@@ -1,0 +1,84 @@
+[2026-02-14 18:05:01]: Uncaught Error: Class "\App\Components\Catalog" not found in /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php:121
+Stack trace:
+#0 /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php(49): App\Services\ServicesProvider->getComponents()
+#1 /var/www/www-root/data/www/my-fd.ru/app/Systems/App.php(26): App\Services\ServicesProvider->init()
+#2 /var/www/www-root/data/www/my-fd.ru/index.php(23): App\Systems\App->run()
+#3 {main}
+  thrown /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php on line 121
+[2026-02-14 18:05:26]: Uncaught Error: Class "\App\Components\Catalog" not found in /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php:121
+Stack trace:
+#0 /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php(49): App\Services\ServicesProvider->getComponents()
+#1 /var/www/www-root/data/www/my-fd.ru/app/Systems/App.php(26): App\Services\ServicesProvider->init()
+#2 /var/www/www-root/data/www/my-fd.ru/index.php(23): App\Systems\App->run()
+#3 {main}
+  thrown /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php on line 121
+[2026-02-14 18:06:01]: Uncaught Error: Class "\App\Components\Catalog" not found in /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php:121
+Stack trace:
+#0 /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php(49): App\Services\ServicesProvider->getComponents()
+#1 /var/www/www-root/data/www/my-fd.ru/app/Systems/App.php(26): App\Services\ServicesProvider->init()
+#2 /var/www/www-root/data/www/my-fd.ru/index.php(23): App\Systems\App->run()
+#3 {main}
+  thrown /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php on line 121
+[2026-02-14 18:06:26]: Uncaught Error: Class "\App\Components\Catalog" not found in /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php:121
+Stack trace:
+#0 /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php(49): App\Services\ServicesProvider->getComponents()
+#1 /var/www/www-root/data/www/my-fd.ru/app/Systems/App.php(26): App\Services\ServicesProvider->init()
+#2 /var/www/www-root/data/www/my-fd.ru/index.php(23): App\Systems\App->run()
+#3 {main}
+  thrown /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php on line 121
+[2026-02-14 18:06:32]: Uncaught Error: Class "\App\Components\Catalog" not found in /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php:121
+Stack trace:
+#0 /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php(49): App\Services\ServicesProvider->getComponents()
+#1 /var/www/www-root/data/www/my-fd.ru/app/Systems/App.php(26): App\Services\ServicesProvider->init()
+#2 /var/www/www-root/data/www/my-fd.ru/index.php(23): App\Systems\App->run()
+#3 {main}
+  thrown /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php on line 121
+[2026-02-14 18:06:33]: Uncaught Error: Class "\App\Components\Catalog" not found in /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php:121
+Stack trace:
+#0 /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php(49): App\Services\ServicesProvider->getComponents()
+#1 /var/www/www-root/data/www/my-fd.ru/app/Systems/App.php(26): App\Services\ServicesProvider->init()
+#2 /var/www/www-root/data/www/my-fd.ru/index.php(23): App\Systems\App->run()
+#3 {main}
+  thrown /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php on line 121
+[2026-02-14 18:06:33]: Uncaught Error: Class "\App\Components\Catalog" not found in /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php:121
+Stack trace:
+#0 /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php(49): App\Services\ServicesProvider->getComponents()
+#1 /var/www/www-root/data/www/my-fd.ru/app/Systems/App.php(26): App\Services\ServicesProvider->init()
+#2 /var/www/www-root/data/www/my-fd.ru/index.php(23): App\Systems\App->run()
+#3 {main}
+  thrown /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php on line 121
+[2026-02-14 18:06:37]: Uncaught Error: Class "\App\Components\Catalog" not found in /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php:121
+Stack trace:
+#0 /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php(49): App\Services\ServicesProvider->getComponents()
+#1 /var/www/www-root/data/www/my-fd.ru/app/Systems/App.php(26): App\Services\ServicesProvider->init()
+#2 /var/www/www-root/data/www/my-fd.ru/index.php(23): App\Systems\App->run()
+#3 {main}
+  thrown /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php on line 121
+[2026-02-14 18:06:39]: Uncaught Error: Class "\App\Components\Catalog" not found in /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php:121
+Stack trace:
+#0 /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php(49): App\Services\ServicesProvider->getComponents()
+#1 /var/www/www-root/data/www/my-fd.ru/app/Systems/App.php(26): App\Services\ServicesProvider->init()
+#2 /var/www/www-root/data/www/my-fd.ru/index.php(23): App\Systems\App->run()
+#3 {main}
+  thrown /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php on line 121
+[2026-02-14 18:07:01]: Uncaught Error: Class "\App\Components\Catalog" not found in /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php:121
+Stack trace:
+#0 /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php(49): App\Services\ServicesProvider->getComponents()
+#1 /var/www/www-root/data/www/my-fd.ru/app/Systems/App.php(26): App\Services\ServicesProvider->init()
+#2 /var/www/www-root/data/www/my-fd.ru/index.php(23): App\Systems\App->run()
+#3 {main}
+  thrown /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php on line 121
+[2026-02-14 18:07:26]: Uncaught Error: Class "\App\Components\Catalog" not found in /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php:121
+Stack trace:
+#0 /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php(49): App\Services\ServicesProvider->getComponents()
+#1 /var/www/www-root/data/www/my-fd.ru/app/Systems/App.php(26): App\Services\ServicesProvider->init()
+#2 /var/www/www-root/data/www/my-fd.ru/index.php(23): App\Systems\App->run()
+#3 {main}
+  thrown /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php on line 121
+[2026-02-14 18:08:01]: Uncaught Error: Class "\App\Components\Catalog" not found in /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php:121
+Stack trace:
+#0 /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php(49): App\Services\ServicesProvider->getComponents()
+#1 /var/www/www-root/data/www/my-fd.ru/app/Systems/App.php(26): App\Services\ServicesProvider->init()
+#2 /var/www/www-root/data/www/my-fd.ru/index.php(23): App\Systems\App->run()
+#3 {main}
+  thrown /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php on line 121

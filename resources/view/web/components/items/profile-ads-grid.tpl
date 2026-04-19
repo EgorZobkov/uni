@@ -1,0 +1,15 @@
+<div class="col-md-6 col-6 col-sm-6 col-lg-3" >
+  <a class="container-item-grid" href="<?php echo $app->component->ads->buildAliasesAdCard($value); ?>" >
+    <div class="container-item-images" <?php echo $app->component->ads->setStyleHeightItemImage(); ?> >
+
+      <?php echo $app->component->ads->outItemCardFavorite($value, $app->user->data->id) ?>
+
+      <?php echo $app->component->ads->outMediaGalleryInCatalog($value); ?>
+
+    </div>
+    <div class="container-item-grid-content" >
+       <div class="container-item-grid-content-prices" ><?php echo $app->component->ads->outPrices($value); ?></div>
+       <div class="container-item-grid-content-title" ><?php echo trimStr($value->title, 40, true); ?></div>
+    </div>
+  </a>
+</div>

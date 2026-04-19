@@ -1,0 +1,18 @@
+[2026-04-05 13:29:54]: Uncaught Error: Call to undefined method App\Components\Ads::buildAdShareModalParams() in /var/www/www-root/data/www/my-fd.ru/storage/cache/ad-card.php:564
+Stack trace:
+#0 /var/www/www-root/data/www/my-fd.ru/app/Systems/View.php(84): require()
+#1 /var/www/www-root/data/www/my-fd.ru/app/Http/Controllers/AdCardController.php(403): App\Systems\View->render()
+#2 [internal function]: App\Http\Controllers\AdCardController->card()
+#3 /var/www/www-root/data/www/my-fd.ru/app/Systems/Router/RouterCommand.php(270): call_user_func_array()
+#4 /var/www/www-root/data/www/my-fd.ru/app/Systems/Router/RouterCommand.php(217): App\Systems\Router\RouterCommand->runMethodWithParams()
+#5 /var/www/www-root/data/www/my-fd.ru/app/Systems/Router/Router.php(805): App\Systems\Router\RouterCommand->runRoute()
+#6 /var/www/www-root/data/www/my-fd.ru/app/Systems/Router/Router.php(345): App\Systems\Router\Router->runRouteCommand()
+#7 /var/www/www-root/data/www/my-fd.ru/app/Systems/App.php(37): App\Systems\Router\Router->run()
+#8 /var/www/www-root/data/www/my-fd.ru/index.php(23): App\Systems\App->run()
+#9 {main}
+  thrown /var/www/www-root/data/www/my-fd.ru/storage/cache/ad-card.php on line 564
+[2026-04-05 14:44:52]: syntax error, unexpected identifier "content" /var/www/www-root/data/www/my-fd.ru/storage/cache/profile.php on line 1187
+[2026-04-05 14:45:51]: syntax error, unexpected identifier "content" /var/www/www-root/data/www/my-fd.ru/storage/cache/profile.php on line 1187
+[2026-04-05 14:45:52]: syntax error, unexpected identifier "content" /var/www/www-root/data/www/my-fd.ru/storage/cache/profile.php on line 1187
+[2026-04-05 14:48:40]: syntax error, unexpected identifier "content" /var/www/www-root/data/www/my-fd.ru/storage/cache/profile.php on line 1187
+[2026-04-05 14:48:53]: syntax error, unexpected identifier "content" /var/www/www-root/data/www/my-fd.ru/storage/cache/profile.php on line 1187

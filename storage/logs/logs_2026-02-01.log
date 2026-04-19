@@ -1,0 +1,9 @@
+[2026-02-01 10:24:30]: Uncaught Error: Call to a member function chainCategory() on null in /var/www/www-root/data/www/my-fd.ru/app/Systems/Api.php:3
+Stack trace:
+#0 /var/www/www-root/data/www/my-fd.ru/vendor/composer/ClassLoader.php(576): include()
+#1 /var/www/www-root/data/www/my-fd.ru/vendor/composer/ClassLoader.php(427): Composer\Autoload\{closure}()
+#2 /var/www/www-root/data/www/my-fd.ru/app/Services/ServicesProvider.php(51): Composer\Autoload\ClassLoader->loadClass()
+#3 /var/www/www-root/data/www/my-fd.ru/app/Systems/App.php(26): App\Services\ServicesProvider->init()
+#4 /var/www/www-root/data/www/my-fd.ru/index.php(23): App\Systems\App->run()
+#5 {main}
+  thrown /var/www/www-root/data/www/my-fd.ru/app/Systems/Api.php on line 3
