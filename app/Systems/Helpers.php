@@ -670,7 +670,13 @@ if (!function_exists('breakStr')) {
 
 if (!function_exists('_deletecookie')) {
     function _deletecookie($key=null){
-        setcookie($key, '', -1, '/');
+        setcookie($key, '', [
+            "expires" => time() - 3600,
+            "path" => "/",
+            "secure" => true,
+            "httponly" => true,
+            "samesite" => "Strict"
+        ]);
     }
 }
 

@@ -236,6 +236,23 @@ public function outShops(){
     $getShops = $app->model->shops->sort("id desc limit 6")->getAll("status=?", ["published"]);
     if($getShops){
 
+        $usersById = [];
+        $userIds = [];
+        foreach ($getShops as $shop) {
+            $userId = isset($shop["user_id"]) ? (int)$shop["user_id"] : 0;
+            if($userId){
+                $userIds[$userId] = $userId;
+            }
+        }
+        if($userIds){
+            $users = $app->model->users->getAll("id IN(" . implode(",", $userIds) . ")");
+            if($users){
+                foreach ($users as $userRow) {
+                    $usersById[(int)$userRow["id"]] = (object)$userRow;
+                }
+            }
+        }
+
         ?>
 
         <div class="bold-title-and-link" >
@@ -248,7 +265,8 @@ public function outShops(){
 
         foreach ($getShops as $key => $value) {
 
-            $user = $app->model->users->find("id=?", [$value["user_id"]]);
+            $userId = isset($value["user_id"]) ? (int)$value["user_id"] : 0;
+            $user = isset($usersById[$userId]) ? $usersById[$userId] : (object)[];
 
             echo $app->view->setParamsComponent(['value'=>$value, 'user'=>$user])->includeComponent('items/home-shop-grid.tpl');
 

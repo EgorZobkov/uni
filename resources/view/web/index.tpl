@@ -39,6 +39,47 @@
     {% extends footer.tpl %}
 
     {{ $template->asset->getJs('web') }}
+    {% if($template->router->currentRoute->name == "home"): %}
+    <script>
+      (function () {
+        var loaded = false;
+        function loadNext(scripts, idx) {
+          if (idx >= scripts.length) return;
+          var holder = scripts[idx];
+          var src = holder.getAttribute('data-src');
+          if (!src) {
+            loadNext(scripts, idx + 1);
+            return;
+          }
+          var s = document.createElement('script');
+          s.src = src;
+          var t = holder.getAttribute('data-type');
+          if (t) s.type = t;
+          s.onload = function () { loadNext(scripts, idx + 1); };
+          s.onerror = function () { loadNext(scripts, idx + 1); };
+          document.body.appendChild(s);
+          holder.parentNode && holder.parentNode.removeChild(holder);
+        }
+
+        function loadHomeLazyScripts() {
+          if (loaded) return;
+          loaded = true;
+          var scripts = Array.prototype.slice.call(document.querySelectorAll('script[data-home-lazy-script="1"][data-src]'));
+          if (!scripts.length) return;
+          loadNext(scripts, 0);
+        }
+
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadHomeLazyScripts, { timeout: 2500 });
+        } else {
+          setTimeout(loadHomeLazyScripts, 1200);
+        }
+        window.addEventListener('load', loadHomeLazyScripts, { once: true });
+        window.addEventListener('scroll', loadHomeLazyScripts, { once: true, passive: true });
+        window.addEventListener('pointerdown', loadHomeLazyScripts, { once: true });
+      })();
+    </script>
+    {% endif %}
 
     <noindex>
 

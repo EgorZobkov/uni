@@ -22,6 +22,13 @@ class GlobalMiddleware extends Middleware
     {
 
         header('Content-type: text/html; charset=utf-8');
+        header('X-Content-Type-Options: nosniff');
+        header('X-Frame-Options: SAMEORIGIN');
+        header('Referrer-Policy: strict-origin-when-cross-origin');
+        header('Permissions-Policy: geolocation=(), microphone=(), camera=()');
+        if($request->isSecure()){
+            header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
+        }
 
         return true;  
 

@@ -875,6 +875,10 @@ public function manualUpdateUpload(){
         return json_answer(["access"=>false]);
     }
 
+    if(empty($_FILES['archive'])){
+        return json_answer(["status"=>false, "type_show"=>"notice", "type_answer"=>"warning", "answer"=>translate("tr_f28b3bd9530c31a9329b8738186f2e3")]);
+    }
+
     if($this->validation->required(true)->setExt(['zip'])->isFile($_FILES['archive'])->status == false){
         return json_answer(["status"=>false, "type_show"=>"notice", "type_answer"=>"warning", "answer"=>$this->validation->error]);
     }
@@ -924,6 +928,11 @@ public function manualUpdateUpload(){
 
     $written = [];
     $basePath = realpath(BASE_PATH);
+    if(!$basePath){
+        $zip->close();
+        $this->manualUpdateDeleteTree($workDir);
+        return json_answer(["status"=>false, "type_show"=>"notice", "type_answer"=>"warning", "answer"=>translate("tr_aff5206f8e3c35dd4c594228379ebc3d")]);
+    }
 
     for($i = 0; $i < $zip->numFiles; $i++){
         $stat = $zip->statIndex($i);
@@ -969,7 +978,20 @@ public function manualUpdateUpload(){
 
     $filesForDb = $written;
     if(isset($manifest['files']) && is_array($manifest['files'])){
-        $filesForDb = array_values($manifest['files']);
+        $filesForDb = [];
+        foreach($manifest['files'] as $file){
+            if(!is_string($file)){
+                continue;
+            }
+            $normalized = $this->manualUpdateNormalizeZipPath($file);
+            if($this->manualUpdateIsRelativePathAllowed($normalized)){
+                $filesForDb[] = $normalized;
+            }
+        }
+        $filesForDb = array_values(array_unique($filesForDb));
+        if(!$filesForDb){
+            $filesForDb = $written;
+        }
     }
 
     $this->model->system_manual_updates->insert(["time_upload"=>$timeUpload, "description"=>$description, "files"=>_json_encode($filesForDb)]);
