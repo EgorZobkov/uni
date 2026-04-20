@@ -764,4 +764,37 @@ $(document).ready(function () {
 
    });
 
+   // Делегирование: контент настроек подгружается в .app-preload-body после loadBody — кнопки при ready может не быть
+   $(document).on('click', '.manual-update-upload-btn', function (e) {
+      e.preventDefault();
+      var btn = $(this);
+      var input = $('.manual-update-archive-input')[0];
+      if (!input || !input.files.length) {
+         helpers.showNotice('warning', helpers.translate.content("tr_f28b3bd9530c31a9329b8738186f2e3"));
+         return;
+      }
+      helpers.startProcessLoadButton(btn);
+      var formData = new FormData();
+      formData.append('archive', input.files[0]);
+      helpers.request({
+         url: btn.data('route-name'),
+         data: formData,
+         cache: false,
+         contentType: false,
+         processData: false,
+         button: btn
+      }, function (data) {
+         if (data['status'] == true && data['reload']) {
+            location.reload();
+            return;
+         }
+         if (data['status'] == true && data['answer']) {
+            helpers.showNoticeAnswer(data['answer'], data['type_answer']);
+         } else if (data['answer']) {
+            helpers.showNotice('warning', data['answer']);
+         }
+         helpers.endProcessLoadButton(btn);
+      });
+   });
+
 });

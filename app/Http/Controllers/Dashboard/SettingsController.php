@@ -869,6 +869,193 @@ public function saveSystems(){
 
 }
 
+public function manualUpdateUpload(){
+
+    if(!$this->user->verificationAccess('control')->status){
+        return json_answer(["access"=>false]);
+    }
+
+    if($this->validation->required(true)->setExt(['zip'])->isFile($_FILES['archive'])->status == false){
+        return json_answer(["status"=>false, "type_show"=>"notice", "type_answer"=>"warning", "answer"=>$this->validation->error]);
+    }
+
+    $workRelative = 'manual-update-'.uniqid('', true);
+    $workDir = $this->config->storage->temp.'/'.$workRelative;
+    $zipPath = $workDir.'/patch.zip';
+
+    if(!_mkdir($workDir, 0777)){
+        return json_answer(["status"=>false, "type_show"=>"notice", "type_answer"=>"warning", "answer"=>translate("tr_334050c5f836a554afed3509ed00e52e").' '.$workDir]);
+    }
+
+    if(!move_uploaded_file($_FILES['archive']['tmp_name'], $zipPath)){
+        $this->manualUpdateDeleteTree($workDir);
+        return json_answer(["status"=>false, "type_show"=>"notice", "type_answer"=>"warning", "answer"=>translate("tr_aff5206f8e3c35dd4c594228379ebc3d")]);
+    }
+
+    $zip = new \ZipArchive();
+    if($zip->open($zipPath) !== true){
+        $this->manualUpdateDeleteTree($workDir);
+        return json_answer(["status"=>false, "type_show"=>"notice", "type_answer"=>"warning", "answer"=>translate("tr_aff5206f8e3c35dd4c594228379ebc3d")]);
+    }
+
+    $manifestRaw = $zip->getFromName('UPDATE_MANIFEST.json');
+    if($manifestRaw === false){
+        $zip->close();
+        $this->manualUpdateDeleteTree($workDir);
+        return json_answer(["status"=>false, "type_show"=>"notice", "type_answer"=>"warning", "answer"=>translate("tr_16aa7583384778ac0e06ad1dc4e51530")]);
+    }
+
+    $manifest = _json_decode($manifestRaw, true);
+    if(!is_array($manifest)){
+        $zip->close();
+        $this->manualUpdateDeleteTree($workDir);
+        return json_answer(["status"=>false, "type_show"=>"notice", "type_answer"=>"warning", "answer"=>translate("tr_aff5206f8e3c35dd4c594228379ebc3d")]);
+    }
+
+    $description = isset($manifest['description']) ? (string)$manifest['description'] : '';
+    $updatedAtManifest = isset($manifest['updated_at']) ? trim((string)$manifest['updated_at']) : '';
+    $timeUpload = $this->datetime->getDate();
+    if($updatedAtManifest !== ''){
+        $parsed = strtotime($updatedAtManifest);
+        if($parsed){
+            $timeUpload = date('Y-m-d H:i:s', $parsed);
+        }
+    }
+
+    $written = [];
+    $basePath = realpath(BASE_PATH);
+
+    for($i = 0; $i < $zip->numFiles; $i++){
+        $stat = $zip->statIndex($i);
+        if(!$stat){
+            continue;
+        }
+        $name = $stat['name'];
+        if($this->manualUpdateIsZipDirectory($name)){
+            continue;
+        }
+        $relative = $this->manualUpdateNormalizeZipPath($name);
+        if($relative === 'UPDATE_MANIFEST.json'){
+            continue;
+        }
+        if(!$this->manualUpdateIsRelativePathAllowed($relative)){
+            $zip->close();
+            $this->manualUpdateDeleteTree($workDir);
+            return json_answer(["status"=>false, "type_show"=>"notice", "type_answer"=>"warning", "answer"=>translate("tr_aff5206f8e3c35dd4c594228379ebc3d")]);
+        }
+        $targetPath = $basePath.DIRECTORY_SEPARATOR.str_replace('/', DIRECTORY_SEPARATOR, $relative);
+        $parentDir = dirname($targetPath);
+        if(!$this->manualUpdateEnsureDirectoryUnderBase($parentDir, $basePath)){
+            $zip->close();
+            $this->manualUpdateDeleteTree($workDir);
+            return json_answer(["status"=>false, "type_show"=>"notice", "type_answer"=>"warning", "answer"=>translate("tr_aff5206f8e3c35dd4c594228379ebc3d")]);
+        }
+        $content = $zip->getFromIndex($i);
+        if($content === false){
+            $zip->close();
+            $this->manualUpdateDeleteTree($workDir);
+            return json_answer(["status"=>false, "type_show"=>"notice", "type_answer"=>"warning", "answer"=>translate("tr_aff5206f8e3c35dd4c594228379ebc3d")]);
+        }
+        if(file_put_contents($targetPath, $content) === false){
+            $zip->close();
+            $this->manualUpdateDeleteTree($workDir);
+            return json_answer(["status"=>false, "type_show"=>"notice", "type_answer"=>"warning", "answer"=>translate("tr_aff5206f8e3c35dd4c594228379ebc3d")]);
+        }
+        $written[] = $relative;
+    }
+
+    $zip->close();
+    $this->manualUpdateDeleteTree($workDir);
+
+    $filesForDb = $written;
+    if(isset($manifest['files']) && is_array($manifest['files'])){
+        $filesForDb = array_values($manifest['files']);
+    }
+
+    $this->model->system_manual_updates->insert(["time_upload"=>$timeUpload, "description"=>$description, "files"=>_json_encode($filesForDb)]);
+
+    $this->caching->flush();
+
+    return json_answer(["status"=>true, "reload"=>true, "type_show"=>"notice", "type_answer"=>"success", "answer"=>code_answer("save_successfully")]);
+
+}
+
+private function manualUpdateIsZipDirectory($name){
+    $name = str_replace('\\', '/', $name);
+    return substr($name, -1) === '/';
+}
+
+private function manualUpdateNormalizeZipPath($name){
+    return ltrim(str_replace('\\', '/', $name), '/');
+}
+
+private function manualUpdateIsRelativePathAllowed($relative){
+    if($relative === ''){
+        return false;
+    }
+    foreach(explode('/', $relative) as $part){
+        if($part === '..'){
+            return false;
+        }
+    }
+    $prefixes = ['app/', 'core/', 'routes/', 'resources/', 'config/', 'storage/'];
+    foreach($prefixes as $prefix){
+        if(strncmp($relative, $prefix, strlen($prefix)) === 0){
+            return true;
+        }
+    }
+    return false;
+}
+
+private function manualUpdateEnsureDirectoryUnderBase($dir, $basePath){
+    if(is_dir($dir)){
+        $real = realpath($dir);
+        if(!$real){
+            return false;
+        }
+        return $this->manualUpdatePathHasBasePrefix($real, $basePath);
+    }
+    if(!@mkdir($dir, 0777, true)){
+        return false;
+    }
+    $real = realpath($dir);
+    if(!$real){
+        return false;
+    }
+    return $this->manualUpdatePathHasBasePrefix($real, $basePath);
+}
+
+private function manualUpdatePathHasBasePrefix($path, $basePath){
+    $path = rtrim(str_replace('\\', '/', $path), '/').'/';
+    $base = rtrim(str_replace('\\', '/', $basePath), '/').'/';
+    return strpos($path, $base) === 0;
+}
+
+private function manualUpdateDeleteTree($path){
+    if(!file_exists($path)){
+        return;
+    }
+    if(!is_dir($path)){
+        @unlink($path);
+        return;
+    }
+    $items = scandir($path);
+    if($items === false){
+        return;
+    }
+    foreach($items as $item){
+        if($item === '.' || $item === '..'){
+            continue;
+        }
+        $next = $path.DIRECTORY_SEPARATOR.$item;
+        if(is_dir($next)){
+            $this->manualUpdateDeleteTree($next);
+        }else{
+            @unlink($next);
+        }
+    }
+    @rmdir($path);
+}
 
 
- }
+ } 

@@ -46,6 +46,9 @@ $this->container->router->group($this->container->config->app->dashboard_alias, 
     $this->container->router->any('/settings/api-app', 'Dashboard/SettingsController@main', ['name' => 'dashboard-settings-api-app', 'before' => ['DashboardMiddleware', 'DashboardTranslateMiddleware'], 'route_id'=>'dashboard-settings']);
     $this->container->router->xpost('/settings/api-app/save', 'Dashboard/SettingsController@saveApiApp', ['name' => 'dashboard-settings-api-app-save', 'before' => ['DashboardMiddleware', 'DashboardTranslateMiddleware'], 'route_id'=>'dashboard-settings']);
 
+    $this->container->router->any('/settings/update', 'Dashboard/SettingsController@main', ['name' => 'dashboard-settings-update', 'before' => ['DashboardMiddleware', 'DashboardTranslateMiddleware'], 'route_id'=>'dashboard-settings']);
+    $this->container->router->xpost('/settings/update/upload', 'Dashboard/SettingsController@manualUpdateUpload', ['name' => 'dashboard-settings-manual-update-upload', 'before' => ['DashboardMiddleware', 'DashboardTranslateMiddleware'], 'route_id'=>'dashboard-settings']);
+
     $this->container->router->xpost('/settings/integrations/delivery-load-edit', 'Dashboard/SettingsController@integrationsDeliveryLoadEdit', ['name' => 'dashboard-settings-integrations-delivery-load-edit', 'before' => ['DashboardMiddleware', 'DashboardTranslateMiddleware'], 'route_id'=>'dashboard-settings']);
     $this->container->router->xpost('/settings/integrations/delivery-save-edit', 'Dashboard/SettingsController@integrationsDeliverySaveEdit', ['name' => 'dashboard-settings-integrations-delivery-save-edit', 'before' => ['DashboardMiddleware', 'DashboardTranslateMiddleware'], 'route_id'=>'dashboard-settings']);
 

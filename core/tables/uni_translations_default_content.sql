@@ -2561,7 +2561,14 @@ INSERT INTO `uni_translations_default_content` (`id`, `content_key`, `text`, `ty
 (2537, 'tr_c83f319d2a6021a184e02721e9d3cd20', 'Высота баннера', 'static'),
 (2538, 'tr_48c2c701ace11f20b598250c6661a922', 'Магазин временно недоступен', 'static'),
 (2539, 'tr_2c509910dde7a273dbe2df2dc77bceff', 'Статистика приложения', 'db'),
-(2540, 'tr_b389ecd52e5647a02fd03b227839d694', 'Свежее', 'static');
+(2540, 'tr_b389ecd52e5647a02fd03b227839d694', 'Свежее', 'static'),
+(2575, 'tr_ce38baa3cdbf9b8814c862a36ae62067', 'Обновление', 'db'),
+(2576, 'tr_3390c7422cc9b03c76358751a5be6cc1', 'Ручное обновление файлов', 'static'),
+(2577, 'tr_c1502c78b9e44f9eed787e4a3946a442', 'Архив в формате ZIP. В корне архива обязателен файл UPDATE_MANIFEST.json с полями description, updated_at (необязательно) и files (массив относительных путей). Остальные файлы в архиве копируются в корень сайта с сохранением путей.', 'static'),
+(2578, 'tr_368d9975ebd408cfc80c66cc215a23e6', 'Изменённые файлы', 'static'),
+(2579, 'tr_16aa7583384778ac0e06ad1dc4e51530', 'В архиве не найден UPDATE_MANIFEST.json в корне.', 'static'),
+(2580, 'tr_aff5206f8e3c35dd4c594228379ebc3d', 'Не удалось применить обновление. Проверьте состав архива и права на запись.', 'static'),
+(2581, 'tr_f303455bdf986e1fd72d958a7d36d378', 'Архив обновления (ZIP)', 'static');
 
 --
 -- Индексы сохранённых таблиц
@@ -2581,7 +2588,7 @@ ALTER TABLE `uni_translations_default_content`
 -- AUTO_INCREMENT для таблицы `uni_translations_default_content`
 --
 ALTER TABLE `uni_translations_default_content`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2541;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2582;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

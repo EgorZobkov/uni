@@ -35,7 +35,8 @@ INSERT INTO `uni_system_settings_sections` (`id`, `name`, `section_id`, `icon`, 
 (9, 'tr_77d52840cbefac92830a54b6ad4aa0a1', 'profile', 'ti-user-circle', 7, 'dashboard-settings-profile', 0),
 (10, 'tr_dcc461ef831568a2866fa409ddf99514', 'market', 'ti-list-details', 7, 'dashboard-settings-market', 0),
 (12, 'tr_a3d80526a39e0714d9f8bec1fcb9bdf6', 'home', 'ti-home', 7, 'dashboard-settings-home', 0),
-(13, 'tr_26ac08046f115170e2b12fb0163dbd83', 'api-app', 'ti-device-mobile-code', 7, 'dashboard-settings-api-app', 0);
+(13, 'tr_26ac08046f115170e2b12fb0163dbd83', 'api-app', 'ti-device-mobile-code', 7, 'dashboard-settings-api-app', 0),
+(14, 'tr_ce38baa3cdbf9b8814c862a36ae62067', 'update', 'ti-package', 9, 'dashboard-settings-update', 0);
 
 --
 -- Индексы сохранённых таблиц
@@ -55,7 +56,7 @@ ALTER TABLE `uni_system_settings_sections`
 -- AUTO_INCREMENT для таблицы `uni_system_settings_sections`
 --
 ALTER TABLE `uni_system_settings_sections`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

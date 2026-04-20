@@ -2537,4 +2537,11 @@ Do not switch to other messengers or mail: if you meet a scammer, it will be eas
   'tr_profile_block_looking_for' => 'I\'m looking for',
   'tr_user_card_block_looking_for' => 'This user is looking for',
   'tr_mobile_catalog_menu_to_home' => 'Home',
+  'tr_3390c7422cc9b03c76358751a5be6cc1' => 'Manual file updates',
+  'tr_c1502c78b9e44f9eed787e4a3946a442' => 'ZIP archive. The archive root must contain UPDATE_MANIFEST.json with the fields description, updated_at (optional), and files (array of relative paths). Other files in the archive are copied to the site root with paths preserved.',
+  'tr_368d9975ebd408cfc80c66cc215a23e6' => 'Changed files',
+  'tr_16aa7583384778ac0e06ad1dc4e51530' => 'UPDATE_MANIFEST.json was not found in the archive root.',
+  'tr_aff5206f8e3c35dd4c594228379ebc3d' => 'Could not apply the update. Check the archive contents and write permissions.',
+  'tr_f303455bdf986e1fd72d958a7d36d378' => 'Update archive (ZIP)',
+  'tr_ce38baa3cdbf9b8814c862a36ae62067' => 'Update',
 ); ?>
