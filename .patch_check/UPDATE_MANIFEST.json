@@ -1,0 +1,17 @@
+﻿{
+    "description":  "Обновлены страницы и логика поиска: добавлена отдельная страница результатов, настроены фильтры для блоков покупки и продажи, изменены маршруты и префиксы ссылок для разделения типов объявлений на i и s.",
+    "updated_at":  "2026-04-26 22:52:55",
+    "files":  [
+                  "app/Components/Ads.php",
+                  "app/Components/AdsCategories.php",
+                  "app/Components/Catalog.php",
+                  "app/Components/Home.php",
+                  "app/Components/Search.php",
+                  "app/Http/Controllers/CatalogController.php",
+                  "app/Http/Controllers/HomeController.php",
+                  "resources/view/web/assets/js/home.js",
+                  "resources/view/web/header.tpl",
+                  "resources/view/web/search.tpl",
+                  "routes/web.php"
+              ]
+}

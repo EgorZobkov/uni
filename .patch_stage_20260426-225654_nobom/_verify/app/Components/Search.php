@@ -182,8 +182,7 @@ public function searchItemsCombined($query=null, $user_id=0){
 
                     }
                     
-                    $searchLink = outRoute('global-search') . '?search=' . urlencode($value["name"]);
-                    $answer .= '<a href="'.$searchLink.'" class="live-search-results-item actionItemSearchClick" data-query="'.$value["name"].'" >'.$value["name"].'</a>';
+                    $answer .= '<a href="'.$value["link"].'" class="live-search-results-item" >'.$value["name"].'</a>';
 
                 }
 
@@ -371,8 +370,7 @@ public function searchItemsCombined($query=null, $user_id=0){
     if($result){
         foreach ($result as $type => $nested) {
             foreach ($nested as $key => $value) {
-                $searchLink = outRoute('global-search') . '?search=' . urlencode($value["name"]);
-                $answer .= '<a href="'.$searchLink.'" class="live-search-results-item actionItemSearchClick" data-query="'.$value["name"].'" >'.$value["name"].$value["subtitle"].'</a>';
+                $answer .= '<a href="'.$value["link"].'" class="live-search-results-item actionItemSearchClick" data-query="'.$value["name"].'" >'.$value["name"].$value["subtitle"].'</a>';
             }
         }
         return ["status"=>true, "answer"=>$answer];
