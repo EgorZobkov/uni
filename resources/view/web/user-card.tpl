@@ -24,7 +24,7 @@
 
     {% if($data->ads): %}
 
-    <div class="row row-cols-2 g-2 g-lg-3 mt25" >{{ $data->ads }}</div>
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mt25" >{{ $data->ads }}</div>
 
     <a class="btn-custom-mini button-color-scheme1 mt10" href="{{ outRoute('user-card-ads', [$data->user->alias]) }}" >{{ translate("tr_d572de2b18482a4db2968a7fe6ca674f") }}</a>
 

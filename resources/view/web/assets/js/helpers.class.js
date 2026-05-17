@@ -124,33 +124,85 @@ export default class Helpers {
 
   }
 
-  endTimeoutProcessLoadButton(thisButton){
-    if(thisButton.prop('disabled') == true){
-      thisButton.find('span.spinner-border').remove();
-      thisButton.prop('disabled', false);
+  clearProcessLoadTimer(){
+    if(this.timerIdProcess){
+      clearInterval(this.timerIdProcess);
+      this.timerIdProcess = undefined;
     }
-    clearInterval(this.timerIdProcess);
+  }
+
+  endTimeoutProcessLoadButton(thisButton){
+    var $btn = $(thisButton);
+    if($btn.length && $btn.hasClass('is-loading')){
+      this.endProcessLoadButton($btn);
+    }
+    this.clearProcessLoadTimer();
   }
 
   startProcessLoadButton(thisButton){
 
-    if(this.timerIdProcess){
-      clearInterval(this.timerIdProcess);
+    this.clearProcessLoadTimer();
+
+    var $btn = $(thisButton);
+    if(!$btn.length){
+      return;
     }
 
-    this.timerIdProcess = setInterval(()=>this.endTimeoutProcessLoadButton(thisButton), 20000);
+    this.timerIdProcess = setInterval(()=>this.endTimeoutProcessLoadButton($btn), 20000);
 
-    if(thisButton.find("span.spinner-border").length == 0){
-      thisButton.html('<span class="spinner-border me-1" role="status" aria-hidden="true"></span>'+$(thisButton).html());
+    $btn.removeClass('is-loading');
+    $btn.find('span.spinner-border').remove();
+    $btn.find('.btn-spinner').remove();
+
+    if($btn.children('.btn-loading-hide').length === 0){
+      $btn.html('<span class="btn-loading-hide">' + $btn.html() + '</span>');
+      $btn.data('dsBtnWrapped', true);
     }
-    thisButton.prop('disabled', true);
+
+    if($btn.children('.btn-spinner').length === 0){
+      $btn.append('<span class="btn-spinner" aria-hidden="true"></span>');
+    }
+
+    $btn.addClass('is-loading');
+
+    var el = $btn[0];
+    if(el && el.tagName === 'A'){
+      $btn.addClass('disabled');
+      $btn.attr('aria-busy', 'true');
+    }else{
+      $btn.prop('disabled', true);
+    }
 
   }
 
   endProcessLoadButton(thisButton){
 
-    thisButton.find('span.spinner-border').remove();
-    thisButton.prop('disabled', false);
+    this.clearProcessLoadTimer();
+
+    var $btn = $(thisButton);
+    if(!$btn.length){
+      return;
+    }
+
+    $btn.removeClass('is-loading');
+    $btn.find('span.spinner-border').remove();
+    $btn.find('.btn-spinner').remove();
+
+    var el = $btn[0];
+    if(el && el.tagName === 'A'){
+      $btn.removeClass('disabled');
+      $btn.removeAttr('aria-busy');
+    }else{
+      $btn.prop('disabled', false);
+    }
+
+    if($btn.data('dsBtnWrapped')){
+      var $hide = $btn.children('.btn-loading-hide').first();
+      if($hide.length){
+        $btn.html($hide.html());
+      }
+      $btn.removeData('dsBtnWrapped');
+    }
 
   }
 
@@ -180,22 +232,26 @@ export default class Helpers {
 
   openModal(idModal, size=null, element=null, params=null){
 
+    var $dlg = $('#'+idModal+' .modal-dialog');
+
     if(size){
 
        if(size == "nano"){
-          $('#'+idModal+' .modal-dialog').css("max-width", "450px");
+          $dlg.css({"max-width": "", "--mf-modal-max-width": "450px"});
        }else if(size == "small"){
-          $('#'+idModal+' .modal-dialog').css("max-width", "540px");
+          $dlg.css({"max-width": "", "--mf-modal-max-width": "550px"});
        }else if(size == "medium"){
-          $('#'+idModal+' .modal-dialog').css("max-width", "650px");
+          $dlg.css({"max-width": "", "--mf-modal-max-width": "650px"});
        }else if(size == "big"){
-          $('#'+idModal+' .modal-dialog').css("max-width", "750px");
+          $dlg.css({"max-width": "", "--mf-modal-max-width": "750px"});
        }else if(size == "mega"){
-          $('#'+idModal+' .modal-dialog').css("max-width", "950px");
+          $dlg.css({"max-width": "", "--mf-modal-max-width": "950px"});
        }else{
-          $('#'+idModal+' .modal-dialog').css("max-width", size);
+          $dlg.css({"max-width": "", "--mf-modal-max-width": size});
        }
 
+    }else if($dlg.length){
+       $dlg.css({"max-width": "", "--mf-modal-max-width": ""});
     }
 
     $(".modal").modal("hide");

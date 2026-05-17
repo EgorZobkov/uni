@@ -23,7 +23,7 @@
         $main_request = 'all';
     }
 
-    $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/catalog.js\" type=\"module\" ></script>"]);
+    $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/catalog.js?v=4\" type=\"module\" ></script>"]);
 
     $data = $this->component->catalog->requestData($main_request);
 
@@ -182,7 +182,7 @@ public function loadItems()
 
                 $ids[] = $value->id;
 
-                $content .= $this->component->advertising->outInResults($key, ["col-grid"=>"col-md-6 col-6 col-sm-6 col-lg-3"]);
+                $content .= $this->component->advertising->outInResults($key, ["col-grid"=>"col"]);
 
                 if($this->component->catalog->getViewItems($category_id) == "grid"){
                     $content .= $this->view->setParamsComponent(['value'=>$value])->includeComponent('items/grid.tpl');
@@ -200,14 +200,14 @@ public function loadItems()
 
             $result = '
 
-               <div class="row row-cols-2 g-2 g-lg-3" style="display: none;" >
+               <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" style="display: none;" >
 
                   '.$content.'
 
                </div>
 
                <div class="text-center" >
-                  <button class="btn-custom button-color-scheme1 actionShowMoreItems" >'.translate("tr_11d9e7ea0320006d822a967777abd16a").'</button>
+                  <button class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 actionShowMoreItems" >'.translate("tr_11d9e7ea0320006d822a967777abd16a").'</button>
                </div>
 
             ';
@@ -220,7 +220,7 @@ public function loadItems()
 
                 $result = '
 
-                   <div class="row row-cols-2 g-2 g-lg-3" style="display: none;" >
+                   <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" style="display: none;" >
 
                       '.$content.'
 
@@ -232,7 +232,7 @@ public function loadItems()
 
                    <h4 class="title-nearest-cities" >'.translate("tr_dbd2bb1804750454fd795cc36924bf3b").'</h4>
 
-                   <div class="row row-cols-2 g-2 g-lg-3" >
+                   <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" >
 
                       '.$data.'
 
@@ -244,7 +244,7 @@ public function loadItems()
 
                 $result = '
 
-                   <div class="row row-cols-2 g-2 g-lg-3" style="display: none;" >
+                   <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" style="display: none;" >
 
                       '.$content.'
 
@@ -276,7 +276,7 @@ public function loadItems()
 
                   <h4 class="title-nearest-cities" >'.translate("tr_dbd2bb1804750454fd795cc36924bf3b").'</h4>
 
-                  <div class="row row-cols-2 g-2 g-lg-3" >
+                  <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" >
 
                      '.$data.'
 

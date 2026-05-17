@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="container mt20 mb40" >
+<div class="container ds-inset-page-vertical" >
 
     <div class="row" >
 
@@ -14,7 +14,7 @@
 
     </div>
 
-    <div class="row mt20" >
+    <div class="row ds-flow-section" >
 
       <div class="col-lg-9 col-12" >
 

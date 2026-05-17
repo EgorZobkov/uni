@@ -1,4 +1,4 @@
-<h3 class="modal-title mb-3" > <strong><?php echo translate("tr_ab4040809c63f9356302ecd54e2e0151"); ?></strong> </h3>
+<h3 class="modal-title mf-modal__title" > <strong><?php echo translate("tr_ab4040809c63f9356302ecd54e2e0151"); ?></strong> </h3>
 
 <?php
 echo $app->component->geo->outMapDeliveryPoints($data->id, (array)$data);

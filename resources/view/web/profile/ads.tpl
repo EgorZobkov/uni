@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="container mt25" >
+<div class="container ds-flow-page-start" >
 
 <div class="row" >
 
@@ -12,11 +12,11 @@
 
   </div>
 
-  <div class="col-md-9" >
+  <div class="col-md-9 ds-stack-32" >
 
         <h3> <strong>{{ translate("tr_ffc009f302516a8402667d060e48794b") }}</strong> </h3>
 
-        <div class="my-tabs-items-small mt20">
+        <div class="my-tabs-items-small">
             <a class="my-tabs-item {% if(!$_GET['status']){ echo 'active'; } %}" href="{{ outRoute('profile-ads') }}" >{{ translate("tr_1cc7e7972b8c9daa5e9c8e94483acc7d") }} <span>{{ $template->component->profile->outCountAdsUserByStatus() }}</span> </a>
             <a class="my-tabs-item {% if(compareValues($_GET['status'], 'active')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'active']) }}" >{{ translate("tr_c83f7ab515c5cf6bed69213f55f917c7") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('active') }}</span> </a>
             <a class="my-tabs-item {% if(compareValues($_GET['status'], 'sold')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'sold']) }}" >{{ translate("tr_af43d5369e953088e86102931ef6be20") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('sold') }}</span> </a>
@@ -25,17 +25,17 @@
             <a class="my-tabs-item {% if(compareValues($_GET['status'], 'archive')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'archive']) }}" >{{ translate("tr_9e1ad28d8e86e5df9b53cb1f360e7114") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('archive') }}</span> </a>
         </div>
 
-        <a class="btn-custom button-color-scheme2 mt20" href="{{ outRoute('ad-create') }}" >{{ translate("tr_6a597fed338ace644982313b3cfbead4") }}</a>
+        <a class="btn-custom button-color-scheme2" href="{{ outRoute('ad-create') }}" >{{ translate("tr_6a597fed338ace644982313b3cfbead4") }}</a>
 
         {% if($data->ads): %}
 
-          <div class="row row-cols-2 g-2 g-lg-3 mt25" >{{ $data->ads; }}</div>
+          <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3" >{{ $data->ads; }}</div>
 
           {{ $template->pagination->display() }}
 
         {% else: %}
 
-          <div class="mt40 not-found-title-container" >
+          <div class="not-found-title-container" >
              <div class="not-found-title-container-image" >🧐</div>
              <p>{{ translate("tr_c3b91a7a70cf6227c8277790bd2e5efc") }}</p>           
           </div>
@@ -44,11 +44,11 @@
 
         {% if($data->show_ads_search_block): %}
 
-        <h3 class="mt40"> <strong>{{ translate("tr_profile_block_looking_for") }}</strong> </h3>
+        <h3> <strong>{{ translate("tr_profile_block_looking_for") }}</strong> </h3>
 
-        <a class="btn-custom button-color-scheme2 mt20" href="{{ outRoute('ad-search-create') }}" >{{ translate("tr_header_add_type_search") }}</a>
+        <a class="btn-custom button-color-scheme2" href="{{ outRoute('ad-search-create') }}" >{{ translate("tr_header_add_type_search") }}</a>
 
-        <div class="row row-cols-2 g-2 g-lg-3 mt25" >{{ $data->ads_search; }}</div>
+        <div class="row row-cols-2 g-2 g-lg-3" >{{ $data->ads_search; }}</div>
 
         {% endif; %}
 

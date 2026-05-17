@@ -13,9 +13,10 @@
 
 {% block content %}
 
-<div class="container mt20 mb40" >
+<div class="container ds-inset-page-vertical" >
 
-    <nav aria-label="breadcrumb" class="mb15" >
+    <div class="mf-page-header__nav" >
+    <nav aria-label="breadcrumb" >
 
       <ol class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
 
@@ -34,6 +35,7 @@
       </ol>
 
     </nav>
+    </div>
 
     {{ $template->component->ads->outStatusInCardAd($data); }}
 
@@ -56,13 +58,13 @@
     </div>
     {% endif %}
 
-    <div class="row" >
+    <div class="row g-3 justify-content-between align-items-start ad-card-heading-row" >
 
-      <div class="col-md-9" >
+      <div class="col-md-9 mf-page-header__body" >
 
-        <h1 class="font-bold text-break-word" >{{ $seo->h1; }}</h1>
+        <h1 class="mf-page-header__title font-bold text-break-word" >{{ $seo->h1; }}</h1>
 
-        <div class="ad-card-info-line" >
+        <div class="ad-card-info-line mf-page-header__meta" >
           <span>{{ $template->datetime->outLastTime($data->time_create); }}</span>
           {% if(!empty($data->is_ads_search)): %}
           <span><i class="ti ti-eye"></i> {{ $template->component->ads->getViewsSearch($data->id); }} ({{ $template->component->ads->getViewsTodaySearch($data->id); }} {{ translate("tr_a9705117762f35c4940a622bc9940a01") }})</span>
@@ -76,7 +78,7 @@
 
       </div>
 
-      <div class="col-md-3 text-end" >
+      <div class="col-md-3 text-end mf-page-header__actions" >
 
         {% if($data->owner): %}
         <div class="ad-card-menu-line" >
@@ -112,14 +114,14 @@
       </div>      
 
       <div class="col-md-12" >
-          <div class="mt30" >
+          <div class="ds-flow-section-lg" >
               {{ $template->component->ads->outMediaGalleryInCard($data, ["height"=>"300px"]); }}
           </div>        
       </div>
 
     </div>
 
-    <div class="row mt20" >
+    <div class="row ds-flow-section" >
       <div class="col-md-12 col-lg-9 col-12 col-sm-12 order-lg-1 order-2" >
 
           <div class="ad-card-content" >
@@ -169,7 +171,7 @@
               <p class="text-break-word" >{{ outTextWithLinks($seo->text); }}</p>
             </div>
             {% if($data->geo): %}
-            <div class="ad-card-content-item" >
+            <div class="ad-card-content-item ds-stack-16" >
               <p class="ad-card-subtitle" >{{ translate("tr_9a2f0ded92075434b49c94329297a21c") }}</p>
 
               <div>{{ $template->component->ads->outGeoAndAddressInAdCard($data) }}</div>
@@ -183,7 +185,7 @@
               {{ $template->component->ads->outGeoMetroInAdCard($data) }}
 
               {% if($data->address_latitude && $data->address_longitude): %}
-              <div><button class="btn-custom button-color-scheme2 mt15 actionAdShowMap">{{ translate("tr_8b766767c5f658ee12f29aba7145955f") }}</button></div>
+              <div><button class="btn-custom mf-btn mf-btn-md mf-btn-secondary actionAdShowMap">{{ translate("tr_8b766767c5f658ee12f29aba7145955f") }}</button></div>
               <div class="ad-card-content-geo-map initMapAddress" id="initMapAddress" >{{ $template->component->geo->outMapPointAddressInAdCard($data->address_latitude, $data->address_longitude) }}</div>
               {% endif %}
 
@@ -191,7 +193,7 @@
             {% endif %}
             {% else: %}
             {% if($data->geo): %}
-            <div class="ad-card-content-item" >
+            <div class="ad-card-content-item ds-stack-16" >
               <p class="ad-card-subtitle" >{{ translate("tr_9a2f0ded92075434b49c94329297a21c") }}</p>
 
               <div>{{ $template->component->ads->outGeoAndAddressInAdCard($data) }}</div>
@@ -205,7 +207,7 @@
               {{ $template->component->ads->outGeoMetroInAdCard($data) }}
 
               {% if($data->address_latitude && $data->address_longitude): %}
-              <div><button class="btn-custom button-color-scheme2 mt15 actionAdShowMap">{{ translate("tr_8b766767c5f658ee12f29aba7145955f") }}</button></div>
+              <div><button class="btn-custom mf-btn mf-btn-md mf-btn-secondary actionAdShowMap">{{ translate("tr_8b766767c5f658ee12f29aba7145955f") }}</button></div>
               <div class="ad-card-content-geo-map initMapAddress" id="initMapAddress" >{{ $template->component->geo->outMapPointAddressInAdCard($data->address_latitude, $data->address_longitude) }}</div>
               {% endif %}
 
@@ -268,10 +270,10 @@
 
 
       </div>
-      <div class="col-lg-3 col-md-12 col-12 col-lg-2 order-1 mb20" >
+      <div class="col-lg-3 col-md-12 col-12 col-lg-2 order-1 ad-card-sidebar-responsive-gap" >
           
           {% if($data->booking_status && !$data->owner): %}
-          <div class="mb15" >
+          <div class="ds-stack-16" >
 
             <div class="ad-card-booking-calendar" data-id="{{ $data->id }}" >
               <div class="ad-card-booking-calendar-range1" style="display: none;" ></div>
@@ -279,7 +281,7 @@
             </div>
 
             <div class="ad-card-booking-calendar-button-order" >
-              <span class="btn-custom button-color-scheme7 width100 mt20 mb10" >{{ translate("tr_8451e9509832d0c5d778ea3333902b06") }}</span>
+              <span class="btn-custom mf-btn mf-btn-md mf-btn-accent width100" >{{ translate("tr_8451e9509832d0c5d778ea3333902b06") }}</span>
             </div>
 
           </div>
@@ -287,6 +289,7 @@
 
           <div class="ad-card-sidebar" >
 
+              {% if(empty($data->is_ads_search)): %}
               <div class="ad-card-prices" >
 
                 {{ $template->component->ads->outPrices($data) }}
@@ -294,6 +297,7 @@
                 {{ $template->component->ads->outPriceDifferentCurrenciesInAdCard($data) }}
 
               </div>
+              {% endif; %}
 
               <div class="ad-card-action-buttons" >
                 {{ $template->component->ads->outActionButtonsInAdCard($data) }}
@@ -335,7 +339,7 @@
     </div>
 
     {% if($data->similar_items): %}
-    <div class="row mt40" >
+    <div class="row ds-flow-page-start-xl" >
       <div class="col-md-12" >
 
           <div class="ad-card-similar-content" >

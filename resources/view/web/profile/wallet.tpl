@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="container mt25" >
+<div class="container ds-flow-page-start" >
 
 <div class="row" >
 
@@ -14,63 +14,43 @@
 
   <div class="col-md-9" >
 
-        <h3> <strong>{{ translate("tr_419a0c4f19223bbef8fd1cbf92bf0cd0") }}</strong> </h3>
+        <h3> <strong>{{ translate("tr_ffc009f302516a8402667d060e48794b") }}</strong> </h3>
 
-        <div class="mt20 profile-wallet-info-balance" >
-          <p>{{ translate("tr_95dcad972e98961cdb8a49897d2fc550") }}</p>
-          <h3>{{ $template->user->data->balance_by_currency }}</h3>
+        <div class="my-tabs-items-small mt20">
+            <a class="my-tabs-item {% if(!$_GET['status']){ echo 'active'; } %}" href="{{ outRoute('profile-ads') }}" >{{ translate("tr_1cc7e7972b8c9daa5e9c8e94483acc7d") }} <span>{{ $template->component->profile->outCountAdsUserByStatus() }}</span> </a>
+            <a class="my-tabs-item {% if(compareValues($_GET['status'], 'active')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'active']) }}" >{{ translate("tr_c83f7ab515c5cf6bed69213f55f917c7") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('active') }}</span> </a>
+            <a class="my-tabs-item {% if(compareValues($_GET['status'], 'sold')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'sold']) }}" >{{ translate("tr_af43d5369e953088e86102931ef6be20") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('sold') }}</span> </a>
+            <a class="my-tabs-item {% if(compareValues($_GET['status'], 'moderation')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'moderation']) }}" >{{ translate("tr_d9d74d385363cf3fdf9c1e62b484acca") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('moderation') }}</span> </a>
+            <a class="my-tabs-item {% if(compareValues($_GET['status'], 'waiting_payment')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'waiting_payment']) }}" >{{ translate("tr_c3778e4b26fed47232f25379c67c0010") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('waiting_payment') }}</span> </a>
+            <a class="my-tabs-item {% if(compareValues($_GET['status'], 'archive')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'archive']) }}" >{{ translate("tr_9e1ad28d8e86e5df9b53cb1f360e7114") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('archive') }}</span> </a>
         </div>
 
-        <div class="my-tabs-items my-tabs-items-medium mt20">
-            <div class="my-tabs-item active" data-id="1" >{{ translate("tr_356d93adeaa7dfc2f6df1ffe8f04c79d") }}</div>
-            <div class="my-tabs-item" data-id="2" >{{ translate("tr_60474cc5f82d9aa40595415691312c2c") }}</div>
-        </div>
+        <a class="btn-custom button-color-scheme2 mt20" href="{{ outRoute('ad-create') }}" >{{ translate("tr_6a597fed338ace644982313b3cfbead4") }}</a>
 
-        <div class="my-tabs-content-container" >
-          <div class="my-tabs-content my-tabs-content-1" >
-            
-            <form class="profile-wallet-payment-form" >
+        {% if($data->ads): %}
 
-              <p class="mt30" > {{ translate("tr_917a902a8d941c7311d4ea87dd3626b2") }} </p>
+          <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mt25" >{{ $data->ads; }}</div>
 
-              <div class="row" >
-                <div class="col-md-3" >
-                  <input type="number" class="form-control" name="amount" step="0.01" min="{{ $template->setting->profile_wallet_min_amount_replenishment }}" max="{{ $template->setting->profile_wallet_max_amount_replenishment }}" placeholder="{{ $template->system->getDefaultCurrency()->symbol }}" >
-                </div>
-              </div>
+          {{ $template->pagination->display() }}
 
-              <p class="mt30" > {{ translate("tr_4dbf0c67eed6243d0535352743ed3b46") }} </p>
+        {% else: %}
 
-              <div>
-                <div class="row" >
-                  <div class="col-md-6" >
-                    {{ $template->component->transaction->outActivePaymentsInWallet() }}
-                  </div>
-                </div>
-              </div>
-
-              <button class="btn-custom button-color-scheme1 mt30 profile-wallet-payment-action-replenishment">{{ translate("tr_7199188f4dfaf0bfbe033af01906ddc6") }}</button>
-
-            </form>
-
+          <div class="mt40 not-found-title-container" >
+             <div class="not-found-title-container-image" >🧐</div>
+             <p>{{ translate("tr_c3b91a7a70cf6227c8277790bd2e5efc") }}</p>           
           </div>
-          <div class="my-tabs-content my-tabs-content-2" >
 
-            {% if($data->history): %}
+        {% endif; %}
 
-              {{ $data->history }}
+        {% if($data->show_ads_search_block): %}
 
-            {% else: %}
+        <h3 class="mt40"> <strong>{{ translate("tr_profile_block_looking_for") }}</strong> </h3>
 
-              <div class="mt40 not-found-title-container" >
-                 <div class="not-found-title-container-image" >🧐</div>
-                 <p>{{ translate("tr_3a54e7d21900776b9b9637249f11231f") }}</p>           
-              </div>
+        <a class="btn-custom button-color-scheme2 mt20" href="{{ outRoute('ad-search-create') }}" >{{ translate("tr_header_add_type_search") }}</a>
 
-            {% endif; %}
+        <div class="row row-cols-2 g-2 g-lg-3 mt25" >{{ $data->ads_search; }}</div>
 
-          </div>
-        </div>
+        {% endif; %}
 
   </div>
 

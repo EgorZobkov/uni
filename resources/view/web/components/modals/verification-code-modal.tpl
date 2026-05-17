@@ -1,4 +1,4 @@
-<h3 class="modal-title mb-3" > <strong><?php echo translate("tr_66b19874aa1bb6b1b565d42d54b0dee2"); ?></strong> </h3>
+<h3 class="modal-title mf-modal__title" > <strong><?php echo translate("tr_66b19874aa1bb6b1b565d42d54b0dee2"); ?></strong> </h3>
 
 <?php if($data->phone){ ?>
 
@@ -13,8 +13,8 @@
 	<input type="text" name="verify_code_contact" class="form-control" value="" >
 	<label class="verify-code-label-error"></label>
 
-	<div class="text-end mt-4">
-		<button class="btn-custom button-color-scheme1 actionCheckVerifyCodeContact"><?php echo translate("tr_e2603bcce79e0b861ac1f1bd464de2b6"); ?></button>
+	<div class="mf-modal__actions mf-modal__actions--end">
+		<button class="btn-custom mf-btn mf-btn-md mf-btn-primary actionCheckVerifyCodeContact"><?php echo translate("tr_e2603bcce79e0b861ac1f1bd464de2b6"); ?></button>
 	</div>
 
 	<input type="hidden" name="verify_phone_contact" class="form-control" value="<?php echo $data->phone; ?>" >
@@ -28,8 +28,8 @@
 	<input type="text" name="verify_code_contact" class="form-control" value="" >
 	<label class="verify-code-label-error"></label>
 
-	<div class="text-end mt-4">
-		<button class="btn-custom button-color-scheme1 actionCheckVerifyCodeContact"><?php echo translate("tr_e2603bcce79e0b861ac1f1bd464de2b6"); ?></button>
+	<div class="mf-modal__actions mf-modal__actions--end">
+		<button class="btn-custom mf-btn mf-btn-md mf-btn-primary actionCheckVerifyCodeContact"><?php echo translate("tr_e2603bcce79e0b861ac1f1bd464de2b6"); ?></button>
 	</div>
 
 	<input type="hidden" name="verify_email_contact" class="form-control" value="<?php echo $data->email; ?>" >

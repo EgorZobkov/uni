@@ -1,4 +1,4 @@
-<h3 class="modal-title mb-3" > <strong><?php echo translate("tr_1167e787a81a5549bc895f4c61dcba4b"); ?></strong> </h3>
+<h3 class="modal-title mf-modal__title" > <strong><?php echo translate("tr_1167e787a81a5549bc895f4c61dcba4b"); ?></strong> </h3>
 
 <form class="modal-edit-shop-form" >
 
@@ -57,6 +57,6 @@
 
 </form>
 
-<div class="text-end mt-4">
+<div class="mf-modal__actions mf-modal__actions--end">
 	<button class="btn-custom button-color-scheme1 actionSaveEditShop"><?php echo translate("tr_74ea58b6a801f0dce4e5d34dbca034dc"); ?></button>
 </div>

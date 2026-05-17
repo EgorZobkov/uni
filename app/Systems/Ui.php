@@ -392,6 +392,9 @@ public function managerModal($modal_id=null, $data=[]){
     }elseif($modal_id == "shopCategories"){
         $this->tpl('modals/shop-categories-modal.tpl');
         $content = $this->modal($modal_id, "medium", $data);
+    }elseif($modal_id == "homeCategories"){
+        $this->tpl('modals/home-categories-modal.tpl');
+        $content = $this->modal($modal_id, "medium", $data);
     }elseif($modal_id == "bookingOrder"){
         $this->tpl('modals/booking-order-modal.tpl');
         $content = $this->modal($modal_id, "big", $data);
@@ -436,12 +439,21 @@ public function modal($id=null, $size="medium", $data=[]){
 
     if(isset($tpl)){
 
+        $mfSize = 'mf-modal--md';
+        if ($size === 'nano' || $size === 'small') {
+            $mfSize = 'mf-modal--sm';
+        } elseif ($size === 'medium') {
+            $mfSize = 'mf-modal--md';
+        } elseif ($size === 'big' || $size === 'mega') {
+            $mfSize = 'mf-modal--lg';
+        }
+
         return '
-          <div class="modal fade" id="'.$id.'Modal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down" style="'.$this->modalSize($size).'">
-            <div class="modal-content">
-              <button type="button" class="btn-close closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
-              <div class="modal-body">
+          <div class="modal fade mf-modal '.$mfSize.' mf-modal--fullscreen-mobile" id="'.$id.'Modal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down mf-modal__dialog" style="'.$this->modalSize($size).'">
+            <div class="modal-content mf-modal__content">
+              <button type="button" class="btn-close closeModal mf-modal__close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <div class="modal-body mf-modal__body">
               '.$app->view->setParamsComponent(["data"=>(object)$data])->includeComponent($tpl).'
               </div>
             </div>
@@ -455,17 +467,17 @@ public function modal($id=null, $size="medium", $data=[]){
 
 public function modalSize($id=null){
     if($id == "nano"){
-        return "max-width: 450px!important;";
+        return "--mf-modal-max-width: 450px;";
     }elseif($id == "small"){
-        return "max-width: 550px!important;";
+        return "--mf-modal-max-width: 550px;";
     }elseif($id == "medium"){
-        return "max-width: 650px!important;";
+        return "--mf-modal-max-width: 650px;";
     }elseif($id == "big"){
-        return "max-width: 750px!important;";
+        return "--mf-modal-max-width: 750px;";
     }elseif($id == "mega"){
-        return "max-width: 950px!important;";
+        return "--mf-modal-max-width: 950px;";
     }else{
-        return "max-width: ".$id."!important;";
+        return "--mf-modal-max-width: ".$id.";";
     }
 }
 

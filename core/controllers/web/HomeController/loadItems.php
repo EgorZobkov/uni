@@ -40,7 +40,7 @@ public function loadItems()
                   '.$content.'
                </div>
                <div class="text-center" >
-                  <button class="btn-custom button-color-scheme1 actionShowMoreItems" >'.translate("tr_11d9e7ea0320006d822a967777abd16a").'</button>
+                  <button class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 actionShowMoreItems" >'.translate("tr_11d9e7ea0320006d822a967777abd16a").'</button>
                </div>
             ';
 

@@ -6,16 +6,16 @@ $ad = $app->component->ads->getAd($data->id);
 <?php
 if($app->component->ads_categories->categories[$ad->category_id]["booking_action"] == "booking"){
 ?>
-<h3 class="modal-title mb-3" > <strong><?php echo translate("tr_543c872407d0aa834e734f713afdcf33"); ?></strong> </h3>
+<h3 class="modal-title mf-modal__title" > <strong><?php echo translate("tr_543c872407d0aa834e734f713afdcf33"); ?></strong> </h3>
 <?php }else{ ?>
-<h3 class="modal-title mb-3" > <strong><?php echo translate("tr_9f0bba0dacad1eacd3a9fcd80e8bd00a"); ?></strong> </h3>
+<h3 class="modal-title mf-modal__title" > <strong><?php echo translate("tr_9f0bba0dacad1eacd3a9fcd80e8bd00a"); ?></strong> </h3>
 <?php
 }
 ?>
 
 <div><?php echo translate("tr_91b2417d13d076fabf08a2684f817476"); ?> <?php echo date("d.m", strtotime($data->date_start)); ?> <?php echo translate("tr_22d57c9399ca22ffbe414f057e8ff6dc"); ?> <?php echo date("d.m", strtotime($data->date_end)); ?>, <?php echo $data->count_days; ?> <?php echo $app->component->ads->outBookingEndingWord($data->count_days, $ad->category_id); ?></div>
 
-<form class="modal-booking-order-form mt20" >
+<form class="modal-booking-order-form mf-form ds-stack-16" >
 
 	<div class="row" >
 		
@@ -156,9 +156,9 @@ if($app->component->ads_categories->categories[$ad->category_id]["booking_action
 	<input type="hidden" name="date_start" value="<?php echo $data->date_start; ?>" >
 	<input type="hidden" name="date_end" value="<?php echo $data->date_end; ?>" >
 
-	<div class="mt30">
-		<button class="btn-custom button-color-scheme1 actionBookingSendOrder"><?php echo translate("tr_7094b4a52292700eb58ee4c231615757"); ?></button>
-		<div class="mt10" > <small><?php echo translate("tr_92a514364b7f3f9a003cfa7c92691108"); ?></small> </div>
+	<div class="mf-modal__actions mf-modal__actions--stretch ds-stack-12">
+		<button class="btn-custom mf-btn mf-btn-md mf-btn-primary actionBookingSendOrder"><?php echo translate("tr_7094b4a52292700eb58ee4c231615757"); ?></button>
+		<div> <small><?php echo translate("tr_92a514364b7f3f9a003cfa7c92691108"); ?></small> </div>
 	</div>
 
 </form>

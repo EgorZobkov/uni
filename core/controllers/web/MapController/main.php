@@ -5,7 +5,7 @@ public function main($request=null)
 
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/ad_card.js\" type=\"module\" ></script>"]);
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/map.js\" type=\"module\" ></script>"]);
-    $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/catalog.js\" type=\"module\" ></script>"]);
+    $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/catalog.js?v=4\" type=\"module\" ></script>"]);
 
     $data = (object)[];
 

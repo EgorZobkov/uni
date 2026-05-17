@@ -1,7 +1,7 @@
  public function catalog($main_request=null)
 {   
 
-    $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/catalog.js\" type=\"module\" ></script>"]);
+    $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/catalog.js?v=4\" type=\"module\" ></script>"]);
 
     $data = $this->component->catalog->requestData($main_request);
 

@@ -1,5 +1,20 @@
-<div class="header-user-dropdown-menu"> <span> <span class="mini-avatar"> <span class="mini-avatar-img"> <?php echo $app->user->avatar($app->user->data); ?> </span> </span>
-    </span>
+<?php
+$profileLinkLabel = htmlspecialchars(translate('tr_bc3500041be69b4e1e837c95995dd325'), ENT_QUOTES, 'UTF-8');
+?>
+
+<div class="header-user-dropdown-menu">
+    <div class="mf-header-user-trigger-row">
+        <a class="mf-header-user-profile-link" href="<?php echo outRoute('profile'); ?>" title="<?php echo $profileLinkLabel; ?>">
+            <span class="mini-avatar">
+                <span class="mini-avatar-img"><?php echo $app->user->avatar($app->user->data); ?></span>
+            </span>
+            <span class="mf-header-user-profile-name"><?php echo $profileLinkLabel; ?></span>
+        </a>
+        <button type="button" class="mf-header-user-menu-toggle" aria-label="<?php echo htmlspecialchars(translate('tr_ceac57c52ec2d76a3ccdc3df4dfdab6f'), ENT_QUOTES, 'UTF-8'); ?>" aria-expanded="false">
+            <i class="ti ti-chevron-down" aria-hidden="true"></i>
+        </button>
+    </div>
+
     <div class="header-user-dropdown-menu-box" >
         <div class="header-user-dropdown-menu-box-link">
 

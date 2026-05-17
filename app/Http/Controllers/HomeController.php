@@ -28,7 +28,7 @@
         }
     }
 
-    $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/home.js\" type=\"module\" ></script>"]);
+    $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/home.js?v=5\" type=\"module\" ></script>"]);
 
     $seo = $this->component->seo->content();
     
@@ -38,7 +38,7 @@
 
 public function search()
 {
-    $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/home.js\" type=\"module\" ></script>"]);
+    $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/home.js?v=5\" type=\"module\" ></script>"]);
 
     $query = isset($_GET["search"]) ? trim((string)$_GET["search"]) : "";
     if($query){
@@ -108,7 +108,7 @@ public function loadItems()
                   '.$content.'
                </div>
                <div class="text-center" >
-                  <button class="btn-custom button-color-scheme1 actionShowMoreItems" >'.translate("tr_11d9e7ea0320006d822a967777abd16a").'</button>
+                  <button class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 actionShowMoreItems" >'.translate("tr_11d9e7ea0320006d822a967777abd16a").'</button>
                </div>
             ';
 

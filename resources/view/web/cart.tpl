@@ -2,14 +2,18 @@
 
 {% block content %}
 
-<div class="container mt40 mb40" >
+<div class="container ds-inset-page-vertical" >
 
     {% if($data->items): %}
 
-    <h1 class="font-bold" >{{ $seo->h1 }}</h1>
+    <div class="ds-stack-24">
 
-    <div class="row mt20" >
-      <div class="col-md-7 order-lg-1 order-2" >
+    <header class="mf-page-header mf-page-header--flush" aria-labelledby="cart-page-title" >
+    <h1 id="cart-page-title" class="mf-page-header__title font-bold" >{{ $seo->h1 }}</h1>
+    </header>
+
+    <div class="row" >
+      <div class="col-md-7 order-lg-1 order-2 ds-stack-16" >
 
           <div class="form-check">
             <input class="form-check-input" type="checkbox" id="cart-check-all" checked >
@@ -18,7 +22,7 @@
             </label>
           </div>
 
-          <form class="cart-form mt15" >
+          <form class="cart-form" >
 
             <div class="order-buy-card-content" >
 
@@ -29,7 +33,7 @@
           </form>
 
       </div>
-      <div class="col-md-3 order-lg-2 order-1 mb25" >
+      <div class="col-md-3 order-lg-2 order-1 ds-stack-16" >
         
           <div class="order-buy-card-sidebar cart-sidebar-selected-items" >
 
@@ -49,7 +53,7 @@
 
               </div>
             
-              <button class="btn-custom button-color-scheme1 width100 mt20 actionCartGoCheckout" >{{ translate("tr_826ea712d2e1d2a94e3bb177ba7747a0") }}</button>
+              <button class="btn-custom button-color-scheme1 width100 actionCartGoCheckout" >{{ translate("tr_826ea712d2e1d2a94e3bb177ba7747a0") }}</button>
 
           </div>
 
@@ -63,14 +67,16 @@
 
     </div>
 
+    </div>
+
     {% else: %}
 
-    <div class="row mt40" >
-      <div class="col-md-7" >
+    <div class="row ds-flow-page-start-xl" >
+      <div class="col-md-7 ds-stack-16" >
 
-          <h1 class="font-bold mt100" >{{ translate("tr_c5d122bb17e668cb0debb2df78bd64d2") }}</h1>
+          <h1 class="mf-page-header__title font-bold" >{{ translate("tr_c5d122bb17e668cb0debb2df78bd64d2") }}</h1>
 
-          <a class="btn-custom button-color-scheme1 mt15" href="{{ $template->component->catalog->currentAliases() }}">{{ translate("tr_eb557c3195702637b89955607c188486") }}</a>
+          <a class="btn-custom button-color-scheme1" href="{{ $template->component->catalog->currentAliases() }}">{{ translate("tr_eb557c3195702637b89955607c188486") }}</a>
 
       </div>
       <div class="col-md-3 d-none d-lg-block" >

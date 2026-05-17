@@ -316,7 +316,7 @@ public function loadItems()
 
             $result = '
 
-               <div class="row row-cols-2 g-2 g-lg-3" style="display: none;" >
+               <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" style="display: none;" >
 
                   '.$content.'
 
@@ -332,7 +332,7 @@ public function loadItems()
 
             $result = '
 
-               <div class="row row-cols-2 g-2 g-lg-3" style="display: none;" >
+               <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" style="display: none;" >
 
                   '.$content.'
 

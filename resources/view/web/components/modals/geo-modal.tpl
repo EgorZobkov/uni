@@ -1,4 +1,4 @@
-<h3 class="modal-title mb-3" > <strong><?php echo translate("tr_8121328feb04392a48af5bfd7d1138d8"); ?></strong> </h3>
+<h3 class="modal-title mf-modal__title" > <strong><?php echo translate("tr_8121328feb04392a48af5bfd7d1138d8"); ?></strong> </h3>
 
 <?php if($app->settings->active_countries){ ?>
 

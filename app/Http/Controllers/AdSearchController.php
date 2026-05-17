@@ -385,7 +385,7 @@ class AdSearchController extends Controller
      */
     public function catalog()
     {
-        $this->asset->registerJs(['view' => 'web', 'name' => '<script src="{assets_path}/js/ad-search-catalog.js" type="module"></script>']);
+        $this->asset->registerJs(['view' => 'web', 'name' => '<script src="{assets_path}/js/ad-search-catalog.js?v=2" type="module"></script>']);
 
         $seo = (object)[
             'meta_title' => translate('tr_home_people_search'),
@@ -437,7 +437,7 @@ class AdSearchController extends Controller
                       ' . $cells . '
                    </div>
                    <div class="text-center" >
-                      <button type="button" class="btn-custom button-color-scheme1 actionShowMoreAdSearchItems" >' . translate('tr_11d9e7ea0320006d822a967777abd16a') . '</button>
+                      <button type="button" class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 actionShowMoreAdSearchItems" >' . translate('tr_11d9e7ea0320006d822a967777abd16a') . '</button>
                    </div>
                 ';
             } else {

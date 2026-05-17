@@ -1,4 +1,4 @@
-{% extends index.tpl %}
+﻿{% extends index.tpl %}
 
 {% block head %}
 <meta property="og:image" content="{{ $template->storage->logo() }}">
@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<div class="container mt15" >
+<div class="container ds-flow-page-start-sm mf-home-page" >
 
 <div class="row" >
 
@@ -18,7 +18,21 @@
      
          {% if($value["code"] == "slider_categories"): %}
 
-       <section class="widget-categories-container d-none d-lg-flex" >{{ $template->component->home->outCategories() }}</section>
+      <section class="mf-home-hero" aria-label="{{ translate('tr_header_global_search_placeholder') }}" >
+        <div class="mf-home-hero__inner ds-stack-16" >
+          <form class="mf-home-hero__search" method="get" action="{{ outRoute('home') }}" role="search" >
+            <input type="search" name="search" class="mf-input form-control mf-home-hero__search-input" autocomplete="off" placeholder="{{ translate('tr_header_global_search_placeholder') }}" value="" >
+            <button type="submit" class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 mf-home-hero__search-submit" aria-label="{{ translate('tr_home_hero_find') }}" ><i class="ti ti-search" aria-hidden="true"></i></button>
+          </form>
+          <div class="widget-categories-container mf-home-hero__categories mf-home-hero__categories-track mf-categories-strip mf-categories-strip--compact" >
+            {{ $template->component->home->outCategories() }}
+            <a href="#" role="button" class="home-widget-categories-item mf-home-hero__category-more actionOpenStaticModal d-none" data-modal-target="homeCategories" aria-label="{{ translate('tr_home_categories_more') }}" >
+              <span class="mf-home-hero__category-more-icon" aria-hidden="true"><i class="ti ti-layout-grid"></i></span>
+              <div>{{ translate('tr_home_categories_more') }}</div>
+            </a>
+          </div>
+        </div>
+      </section>
 
       <section class="widget-ads-search-container" >
         {{ $template->component->home->outAdsSearch() }}
@@ -62,9 +76,12 @@
 
          <section class="widget-ads-container" >
 
+            <header class="mf-section-header mf-section-header--flush" >
             <div class="bold-title-and-link" >
                <span>{{ translate("tr_a0825e8ab6d3fdb685be22c1c21d9ebc") }}</span>
+               <a class="bold-title-and-link__all" href="{{ $template->component->home->hrefSalesCatalogRoot() }}" >{{ translate("tr_1cc7e7972b8c9daa5e9c8e94483acc7d") }}</a>
             </div>
+            </header>
 
             <div class="container-load-items" >
                 <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3" >
@@ -79,8 +96,8 @@
      {% endforeach %}
 
      {% if($seo->h1): %}
-         <section class="home-seo-text" >
-            <h1 class="font-bold mb15" >{{ $seo->h1 }}</h1>
+         <section class="home-seo-text ds-stack-16" >
+            <h1 class="font-bold" >{{ $seo->h1 }}</h1>
             {{ $seo->text }}
          </section>
      {% endif %}

@@ -67,7 +67,7 @@
             <button class="btn-custom button-color-scheme1 width100 actionApplyLiveFilters" >{{ translate("tr_130bbbc068f7a58df5d47f6587ff4b43") }}</button>
 
             {% if($_GET["filter"]): %}
-            <button class="btn-custom button-color-scheme4 width100 mt5 actionClearLiveFilters">{{ translate("tr_02d901c131a1b8c2d1dd669e1f6c88a5") }}</button>
+            <button class="btn-custom button-color-scheme4 width100 actionClearLiveFilters">{{ translate("tr_02d901c131a1b8c2d1dd669e1f6c88a5") }}</button>
             {% endif %}
 
           </div>

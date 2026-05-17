@@ -1,13 +1,13 @@
 <div class="col-12" >
-  <a class="profile-container-item-list" href="<?php echo $app->component->ads->buildAliasesAdSearchCard($value); ?>" >
+  <a class="profile-container-item-list mf-card mf-card-product mf-card-product--profile" href="<?php echo $app->component->ads->buildAliasesAdSearchCard($value); ?>" >
 
     <div class="row" >
 
       <div class="col-md-3 col-sm-3 col-lg-3 col-5" >
 
-        <div class="profile-container-item-images" >
+        <div class="profile-container-item-images mf-card-product__media" >
 
-          <img src="<?php echo $value->media->images->first_m ?: $value->media->images->first; ?>" class="image-autofocus" alt="" >
+          <img src="<?php echo $value->media->images->first_m ?: $value->media->images->first; ?>" class="image-autofocus mf-card-product__image" alt="" >
 
         </div>
 
@@ -15,11 +15,10 @@
 
       <div class="col-md-9 col-sm-9 col-lg-9 col-7" >
 
-        <div class="profile-container-item-list-content" >
+        <div class="profile-container-item-list-content mf-card-product__body" >
           <div class="profile-container-item-list-content-status" ><?php echo $app->component->ads->outStatusByAd($value->status); ?></div>
-           <div class="profile-container-item-list-content-title" ><?php echo htmlspecialchars((string)$value->title, ENT_QUOTES, 'UTF-8'); ?></div>
-           <div class="profile-container-item-list-content-prices" ><?php echo $app->component->ads->outPrices($value); ?></div>
-           <div class="profile-container-item-list-content-additionally" >
+           <div class="profile-container-item-list-content-title mf-card-product__title" ><?php echo htmlspecialchars((string)$value->title, ENT_QUOTES, 'UTF-8'); ?></div>
+           <div class="profile-container-item-list-content-additionally mf-card-product__meta" >
              <span><?php echo $app->component->ads->outLocationByCatalog($value); ?></span>
              <span><?php echo $app->datetime->outLastTime($value->time_create); ?></span>
            </div>

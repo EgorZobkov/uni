@@ -2,9 +2,11 @@
 
 {% block content %}
 
-<div class="container mt40" >
+<div class="container ds-flow-page-start-xl" >
 
-<h3 class="font-bold mb20" >{{ $data->title }}</h3>
+<div class="ds-stack-24">
+
+<h3 class="font-bold" >{{ $data->title }}</h3>
 
 <div class="ad-create-categories-container" style="display: none;" >
   
@@ -20,7 +22,7 @@
 
 <div class="ad-create-options-container" style="display: block;" >
 
-  <form class="form-ad-update" >
+  <form class="form-ad-update mf-form ds-stack-32" >
 
   <div class="ad-create-content-container" >
       {{ $template->component->ads->getContentAndOptions(["category_id"=>$data->category_id, "is_admin"=>$data->isAdmin],$data) }}
@@ -34,9 +36,13 @@
   <input type="hidden" name="geo_latitude" value="{{ $data->address_latitude ?: $data->geo_latitude }}" >
   <input type="hidden" name="geo_longitude" value="{{ $data->address_longitude ?: $data->geo_longitude }}" >
 
-  <button class="btn-custom-big button-color-scheme3 adActionUpdate mt30 mb30" >{{ translate("tr_74ea58b6a801f0dce4e5d34dbca034dc") }}</button>
+  <div class="mf-form-actions" >
+  <button class="btn-custom-big mf-btn mf-btn-lg mf-btn-dark adActionUpdate" >{{ translate("tr_74ea58b6a801f0dce4e5d34dbca034dc") }}</button>
+  </div>
 
   </form>
+
+</div>
 
 </div>
 

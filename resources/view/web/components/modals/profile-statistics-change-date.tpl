@@ -1,4 +1,4 @@
-<h3 class="modal-title mb-3" > <strong><?php echo translate("tr_28b76906f14ac4b4d584dfb15226b05a"); ?></strong> </h3>
+<h3 class="modal-title mf-modal__title" > <strong><?php echo translate("tr_28b76906f14ac4b4d584dfb15226b05a"); ?></strong> </h3>
 
 <form class="profile-statistics-dates-form" >
 
@@ -13,7 +13,7 @@
 
 <input type="hidden" name="item_id" value="<?php echo $data->item_id; ?>" >
 
-<div class="text-end mt-4">
+<div class="mf-modal__actions mf-modal__actions--end">
 	<?php if($data->date_start || $data->date_end){ ?>
 	<button class="btn-custom button-color-scheme2 actionClearProfileStatisticsDates" ><?php echo translate("tr_02d901c131a1b8c2d1dd669e1f6c88a5"); ?></button>
 	<?php } ?>

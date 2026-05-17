@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="container mt25" >
+<div class="container ds-flow-page-start" >
 
 <div class="row" >
 
@@ -14,95 +14,43 @@
 
   <div class="col-md-9" >
 
-        <h3> <strong>{{ translate("tr_c7cadea1c393b4b40ed898d48f10c1b0") }}</strong> </h3>
+        <h3> <strong>{{ translate("tr_ffc009f302516a8402667d060e48794b") }}</strong> </h3>
 
-        {% if($template->user->data->verification_status): %}
-
-          <div class="profile-verification-container mt30" >
-            <h5>{{ translate("tr_1096e90e410c6b59c1f5691f389b23ec") }}</h5>
-            <p>{{ translate("tr_5d6f57e86e6ffd8543c378afc03ea4f1") }}</p>
-          </div>
-
-        {% else: %}
-
-        {% if(!$data->verification): %}
-
-        <form class="profile-verification-form" >
-
-        <div class="profile-verification-container mt30" >
-          
-           <h5> <strong>{{ translate("tr_75768c49c24662cc4465237b0731e1ce") }}</strong> </h5>
-
-           <div class="profile-verification-contact-container" >
-              <div>
-                {% if($template->user->data->phone): %}
-                <span> <i class="ti ti-check"></i> {{ translate("tr_9fdc3f131f7923e7bdd4ec60d465ae87") }} </span>
-                {% else: %}
-                <span> <i class="ti ti-exclamation-circle"></i> {{ translate("tr_9fdc3f131f7923e7bdd4ec60d465ae87") }} </span>
-                <div><a class="btn-custom-mini button-color-scheme5 mt10" href="{{ outRoute('profile-settings') }}">{{ translate("tr_e2603bcce79e0b861ac1f1bd464de2b6") }}</a></div>
-                {% endif %}
-              </div>
-              <div class="mt5" >
-                {% if($template->user->data->email): %}
-                <span> <i class="ti ti-check"></i> {{ translate("tr_92d65fa726a6a4b889597e2e0b1efa58") }} </span>
-                {% else: %}
-                <span> <i class="ti ti-exclamation-circle"></i> {{ translate("tr_92d65fa726a6a4b889597e2e0b1efa58") }} </span>
-                <div><a class="btn-custom-mini button-color-scheme5 mt10" href="{{ outRoute('profile-settings') }}">{{ translate("tr_e2603bcce79e0b861ac1f1bd464de2b6") }}</a></div>
-                {% endif %}
-              </div>
-           </div>
-
-           <h5 class="mt30" > <strong>{{ translate("tr_5e523403f0c0d3386cbce4de7b8a0c0e") }}</strong> </h5>
-
-           <div class="profile-verification-doc-container" >
-                <span>{{ translate("tr_058afe4b7cd85060593f270b2f7756b2") }} <strong>{{ $data->uniq_code }}</strong></span>
-                <div><span class="btn-custom-mini button-color-scheme1 mt10 uniAttachFilesChange" data-accept="images" data-upload-route="profile-verification-upload-attach" data-parent-container="profile-verification-doc-container" >{{ translate("tr_be82d1d8b51f81862b410f6a664cc4e0") }}</span></div>
-                <div class="uni-attach-files-container"></div>
-           </div>
-
-           <div class="profile-verification-info-container" >
-              <ul>
-                <li>{{ translate("tr_8da311118221dc0c11aa027824e14ec4") }}</li>
-                <li>{{ translate("tr_a24a9f16d9b4bb4cb6270e9650e32435") }}</li>
-                <li>{{ translate("tr_d618390400991bcb66538958ba360a76") }}</li>
-                <li>{{ translate("tr_6c4aa29526c6d86bc05f3a77cf022b03") }}</li>
-              </ul>
-           </div>           
-
+        <div class="my-tabs-items-small mt20">
+            <a class="my-tabs-item {% if(!$_GET['status']){ echo 'active'; } %}" href="{{ outRoute('profile-ads') }}" >{{ translate("tr_1cc7e7972b8c9daa5e9c8e94483acc7d") }} <span>{{ $template->component->profile->outCountAdsUserByStatus() }}</span> </a>
+            <a class="my-tabs-item {% if(compareValues($_GET['status'], 'active')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'active']) }}" >{{ translate("tr_c83f7ab515c5cf6bed69213f55f917c7") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('active') }}</span> </a>
+            <a class="my-tabs-item {% if(compareValues($_GET['status'], 'sold')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'sold']) }}" >{{ translate("tr_af43d5369e953088e86102931ef6be20") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('sold') }}</span> </a>
+            <a class="my-tabs-item {% if(compareValues($_GET['status'], 'moderation')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'moderation']) }}" >{{ translate("tr_d9d74d385363cf3fdf9c1e62b484acca") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('moderation') }}</span> </a>
+            <a class="my-tabs-item {% if(compareValues($_GET['status'], 'waiting_payment')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'waiting_payment']) }}" >{{ translate("tr_c3778e4b26fed47232f25379c67c0010") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('waiting_payment') }}</span> </a>
+            <a class="my-tabs-item {% if(compareValues($_GET['status'], 'archive')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'archive']) }}" >{{ translate("tr_9e1ad28d8e86e5df9b53cb1f360e7114") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('archive') }}</span> </a>
         </div>
 
-        <button class="btn-custom button-color-scheme5 mt50 actionSendUserVerification" >{{ translate("tr_9665e787c442763f065ee471f16ff7fd") }}</button>
+        <a class="btn-custom button-color-scheme2 mt20" href="{{ outRoute('ad-create') }}" >{{ translate("tr_6a597fed338ace644982313b3cfbead4") }}</a>
 
-        <div class="mt10" ><small>{{ translate("tr_1ba3555fb005ab797d3614258e8a3905") }} <br> {{ translate("tr_4a0f287f330eac79e8bb717ba1ac22a5") }}</small></div>
+        {% if($data->ads): %}
 
-        </form>
+          <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mt25" >{{ $data->ads; }}</div>
+
+          {{ $template->pagination->display() }}
 
         {% else: %}
 
-          {% if($data->verification->status == "awaiting_verification"): %}
-          <div class="profile-verification-container mt30" >
-            <h5>{{ translate("tr_f3dad7e5739589b14472d0367362ffe4") }}</h5>
-            <p>{{ translate("tr_0f4a88be7db0535c9a1d6c513f160834") }}</p>
+          <div class="mt40 not-found-title-container" >
+             <div class="not-found-title-container-image" >🧐</div>
+             <p>{{ translate("tr_c3b91a7a70cf6227c8277790bd2e5efc") }}</p>           
           </div>
-          {% endif %}
 
-          {% if($data->verification->status == "verified"): %}
-          <div class="profile-verification-container mt30" >
-            <h5>{{ translate("tr_1096e90e410c6b59c1f5691f389b23ec") }}</h5>
-            <p>{{ translate("tr_5d6f57e86e6ffd8543c378afc03ea4f1") }}</p>
-          </div>
-          {% endif %}
+        {% endif; %}
 
-          {% if($data->verification->status == "rejected"): %}
-          <div class="profile-verification-container mt30" >
-            <h5>{{ translate("tr_0c89ae7c67cb259df5ee592bf815ed88") }}</h5>
-            <p>{{ $data->verification->comment }}</p>
-          </div>
-          {% endif %}
+        {% if($data->show_ads_search_block): %}
 
-        {% endif %}
+        <h3 class="mt40"> <strong>{{ translate("tr_profile_block_looking_for") }}</strong> </h3>
 
-        {% endif %}
+        <a class="btn-custom button-color-scheme2 mt20" href="{{ outRoute('ad-search-create') }}" >{{ translate("tr_header_add_type_search") }}</a>
+
+        <div class="row row-cols-2 g-2 g-lg-3 mt25" >{{ $data->ads_search; }}</div>
+
+        {% endif; %}
 
   </div>
 

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="container mt25" >
+<div class="container ds-flow-page-start" >
 
 <div class="row" >
 
@@ -14,27 +14,41 @@
 
   <div class="col-md-9" >
 
-        <h3> <strong>{{ translate("tr_2fc413929104c1a09ae0a66c48ce0902") }}</strong> </h3>
+        <h3> <strong>{{ translate("tr_ffc009f302516a8402667d060e48794b") }}</strong> </h3>
 
-        <div class="my-tabs-items my-tabs-items-medium mt20">
-            <a class="my-tabs-item {% if(!$_GET['tab'] || compareValues($_GET['tab'], 'ads')){ echo 'active'; } %}" href="?tab=ads" >{{ translate("tr_083ab3d9a9221cf6a1641c2c7c5f0d3c") }}</a>
-            <a class="my-tabs-item {% if(compareValues($_GET['tab'], 'searches')){ echo 'active'; } %}" href="?tab=searches" >{{ translate("tr_10b80a180d9f5ab5272132c27430a67e") }}</a>
-            <a class="my-tabs-item {% if(compareValues($_GET['tab'], 'subscriptions')){ echo 'active'; } %}" href="?tab=subscriptions" >{{ translate("tr_4a2adbe0c408017611fe5cc95cbf1a8e") }}</a>
-            <a class="my-tabs-item {% if(compareValues($_GET['tab'], 'viewed')){ echo 'active'; } %}" href="?tab=viewed" >{{ translate("tr_9b236849273d8b0743667e074f592454") }}</a>
+        <div class="my-tabs-items-small mt20">
+            <a class="my-tabs-item {% if(!$_GET['status']){ echo 'active'; } %}" href="{{ outRoute('profile-ads') }}" >{{ translate("tr_1cc7e7972b8c9daa5e9c8e94483acc7d") }} <span>{{ $template->component->profile->outCountAdsUserByStatus() }}</span> </a>
+            <a class="my-tabs-item {% if(compareValues($_GET['status'], 'active')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'active']) }}" >{{ translate("tr_c83f7ab515c5cf6bed69213f55f917c7") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('active') }}</span> </a>
+            <a class="my-tabs-item {% if(compareValues($_GET['status'], 'sold')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'sold']) }}" >{{ translate("tr_af43d5369e953088e86102931ef6be20") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('sold') }}</span> </a>
+            <a class="my-tabs-item {% if(compareValues($_GET['status'], 'moderation')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'moderation']) }}" >{{ translate("tr_d9d74d385363cf3fdf9c1e62b484acca") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('moderation') }}</span> </a>
+            <a class="my-tabs-item {% if(compareValues($_GET['status'], 'waiting_payment')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'waiting_payment']) }}" >{{ translate("tr_c3778e4b26fed47232f25379c67c0010") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('waiting_payment') }}</span> </a>
+            <a class="my-tabs-item {% if(compareValues($_GET['status'], 'archive')){ echo 'active'; } %}" href="{{ requestBuildVars(['status'=>'archive']) }}" >{{ translate("tr_9e1ad28d8e86e5df9b53cb1f360e7114") }} <span>{{ $template->component->profile->outCountAdsUserByStatus('archive') }}</span> </a>
         </div>
 
-        {% if($data->favorites): %}
+        <a class="btn-custom button-color-scheme2 mt20" href="{{ outRoute('ad-create') }}" >{{ translate("tr_6a597fed338ace644982313b3cfbead4") }}</a>
 
-        <div class="row row-cols-2 g-2 g-lg-3 mt25" >{{ $data->favorites }}</div>
+        {% if($data->ads): %}
 
-        {{ $template->pagination->display() }}
+          <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mt25" >{{ $data->ads; }}</div>
+
+          {{ $template->pagination->display() }}
 
         {% else: %}
 
           <div class="mt40 not-found-title-container" >
              <div class="not-found-title-container-image" >🧐</div>
-             <p>{{ translate("tr_d716fec18159de84dae4b5a94795ebac") }}</p>           
+             <p>{{ translate("tr_c3b91a7a70cf6227c8277790bd2e5efc") }}</p>           
           </div>
+
+        {% endif; %}
+
+        {% if($data->show_ads_search_block): %}
+
+        <h3 class="mt40"> <strong>{{ translate("tr_profile_block_looking_for") }}</strong> </h3>
+
+        <a class="btn-custom button-color-scheme2 mt20" href="{{ outRoute('ad-search-create') }}" >{{ translate("tr_header_add_type_search") }}</a>
+
+        <div class="row row-cols-2 g-2 g-lg-3 mt25" >{{ $data->ads_search; }}</div>
 
         {% endif; %}
 

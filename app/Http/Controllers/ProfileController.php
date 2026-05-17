@@ -43,8 +43,6 @@
 public function ads()
 {   
 
-    $this->view->visible_header = false;
-
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/profile.js\" type=\"module\" ></script>"]);
 
     $data = (object)[];
@@ -59,8 +57,6 @@ public function ads()
 
 public function autorenewal()
 {   
-
-    $this->view->visible_header = false;
 
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/profile.js\" type=\"module\" ></script>"]);
 
@@ -86,8 +82,6 @@ public function blacklistAdd()
 
 public function chat()
 {   
-
-    $this->view->visible_header = false;
 
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/profile.js\" type=\"module\" ></script>"]);
 
@@ -209,8 +203,6 @@ public function favoriteAdd()
 public function favorites()
 {   
 
-    $this->view->visible_header = false;
-
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/profile.js\" type=\"module\" ></script>"]);
 
     $data = (object)[];
@@ -248,8 +240,6 @@ public function loadStatisticsChartMonth()
 
 public function orders()
 {   
-
-    $this->view->visible_header = false;
 
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/profile.js\" type=\"module\" ></script>"]);
 
@@ -338,8 +328,6 @@ public function paymentScoreDelete()
 public function profile()
 {   
 
-    $this->view->visible_header = false;
-
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/profile.js\" type=\"module\" ></script>"]);
 
     $data = (object)[];
@@ -364,8 +352,6 @@ public function profileDelete()
 
 public function referral()
 {   
-
-    $this->view->visible_header = false;
 
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/profile.js\" type=\"module\" ></script>"]);
 
@@ -394,8 +380,6 @@ public function renewalDelete()
 
 public function reviews()
 {   
-
-    $this->view->visible_header = false;
 
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/profile.js\" type=\"module\" ></script>"]);
 
@@ -456,8 +440,6 @@ public function searchUserItemsInStatistics()
 
 public function settings()
 {   
-
-    $this->view->visible_header = false;
 
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/profile.js\" type=\"module\" ></script>"]);
 
@@ -581,8 +563,6 @@ public function settingsEdit()
 public function shop()
 {   
 
-    $this->view->visible_header = false;
-
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/profile.js\" type=\"module\" ></script>"]);
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/shop.js\" type=\"module\" ></script>"]);
 
@@ -599,8 +579,6 @@ public function shop()
 
 public function statistics()
 {   
-
-    $this->view->visible_header = false;
 
     $this->asset->registerCss(["view"=>"web", "name"=>"<link rel=\"stylesheet\" href=\"{assets_path}/vendors/apexcharts/apexcharts.css\" />"]);
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/vendors/apexcharts/apexcharts.min.js\" type=\"module\" ></script>"]);
@@ -645,8 +623,6 @@ public function subscribeUser()
 public function tariffs()
 {   
 
-    $this->view->visible_header = false;
-
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/profile.js\" type=\"module\" ></script>"]);
 
     return $this->view->render('profile/tariffs', ["seo"=>(object)["meta_title"=>translate("tr_a49106cadab8ae1ff6a37e7ccea9c665")]]);
@@ -670,8 +646,6 @@ public function uploadAvatar()
 
 public function user($alias)
 {   
-
-    $this->view->visible_header = false;
 
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/profile.js\" type=\"module\" ></script>"]);
    
@@ -714,8 +688,6 @@ public function user($alias)
 public function userAds($alias)
 {   
 
-    $this->view->visible_header = false;
-
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/profile.js\" type=\"module\" ></script>"]);
    
     $data = (object)[];
@@ -741,8 +713,6 @@ public function userAds($alias)
 
 public function verification()
 {   
-
-    $this->view->visible_header = false;
 
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/profile.js\" type=\"module\" ></script>"]);
 
@@ -817,8 +787,6 @@ public function verificationUploadAttach()
 
 public function wallet()
 {   
-
-    $this->view->visible_header = false;
 
     $this->asset->registerJs(["view"=>"web", "name"=>"<script src=\"{assets_path}/js/profile.js\" type=\"module\" ></script>"]);
 

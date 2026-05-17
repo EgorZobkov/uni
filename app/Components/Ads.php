@@ -220,10 +220,10 @@ public function normalizeAdSearchAliasForUrl($data){
  * Публичная ссылка на карточку объявления на поиск — та же схема, что buildAliasesAdCard,
  * плюс фиксированный сегмент getAdsSearchUrlSegment() после гео (или первым, если гео нет),
  * чтобы не пересекаться с карточками продажи с тем же numeric id.
- * Форматы:
- * — с городом: {geo.alias}/{segment}/{chain}/{slug}-{id}
- * — без города: {segment}/{chain}/{slug}-{id}
- * Если chain пуст (category_id=0): {geo.alias}/{segment}/{slug}-{id} или {segment}/{slug}-{id}
+ * Форматы (как у продажи, префикс i/ — маршрут GET /i/:all/:string-:int):
+ * — с городом: i/{geo.alias}/{segment}/{chain}/{slug}-{id}
+ * — без города: i/{segment}/{chain}/{slug}-{id}
+ * Если chain пуст (category_id=0): i/{geo.alias}/{segment}/{slug}-{id} или i/{segment}/{slug}-{id}
  */
 public function buildAliasesAdSearchCard($data=[]){
     if (!is_object($data) || empty($data->id)) {
@@ -244,14 +244,14 @@ public function buildAliasesAdSearchCard($data=[]){
 
     if ($geo && !empty($geo->alias)) {
         if ($chainDash === '') {
-            return outLink($geo->alias . '/' . $seg . '/' . $tail);
+            return outLink('i/' . $geo->alias . '/' . $seg . '/' . $tail);
         }
-        return outLink($geo->alias . '/' . $seg . '/' . $chainDash . '/' . $tail);
+        return outLink('i/' . $geo->alias . '/' . $seg . '/' . $chainDash . '/' . $tail);
     }
     if ($chainDash === '') {
-        return outLink($seg . '/' . $tail);
+        return outLink('i/' . $seg . '/' . $tail);
     }
-    return outLink($seg . '/' . $chainDash . '/' . $tail);
+    return outLink('i/' . $seg . '/' . $chainDash . '/' . $tail);
 }
 
 /**
@@ -581,12 +581,12 @@ public function outActionButtonsInAdSearchCard($data=[]){
     if($data->owner){
         if((int)$data->status === 1){
             ?>
-            <a class="btn-custom button-color-scheme1 width100" href="<?php echo htmlspecialchars(outRoute('ad-search-edit', [$data->id]), ENT_QUOTES, 'UTF-8'); ?>"><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
-            <button type="button" class="btn-custom button-color-scheme2 width100 actionOpenStaticModal" data-modal-target="adRemovePublication" data-modal-params="<?php echo buildAttributeParams(['id' => $data->id, 'is_ads_search' => 1]); ?>"><?php echo translate("tr_af1939bb99d547ff54c8623ba556ab5a"); ?></button>
+            <a class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 width100" href="<?php echo htmlspecialchars(outRoute('ad-search-edit', [$data->id]), ENT_QUOTES, 'UTF-8'); ?>"><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
+            <button type="button" class="btn-custom mf-btn mf-btn-md mf-btn-secondary button-color-scheme2 width100 actionOpenStaticModal" data-modal-target="adRemovePublication" data-modal-params="<?php echo buildAttributeParams(['id' => $data->id, 'is_ads_search' => 1]); ?>"><?php echo translate("tr_af1939bb99d547ff54c8623ba556ab5a"); ?></button>
             <?php
         }else{
             ?>
-            <a class="btn-custom button-color-scheme1 width100" href="<?php echo htmlspecialchars(outRoute('ad-search-edit', [$data->id]), ENT_QUOTES, 'UTF-8'); ?>"><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
+            <a class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 width100" href="<?php echo htmlspecialchars(outRoute('ad-search-edit', [$data->id]), ENT_QUOTES, 'UTF-8'); ?>"><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
             <?php
         }
         return;
@@ -608,13 +608,13 @@ public function outActionButtonsInAdSearchCard($data=[]){
 
     if($data->status == 1){
         ?>
-        <button class="btn-custom button-color-scheme1 width100 actionOpenDialogueSendMessage" data-params="<?php echo $app->component->chat->buildParams(['whom_user_id'=>$data->user_id]); ?>" ><?php echo translate("tr_014478b5b412ab74b6a95f968d4e413d"); ?></button>
+        <button class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 width100 actionOpenDialogueSendMessage" data-params="<?php echo $app->component->chat->buildParams(['whom_user_id'=>$data->user_id]); ?>" ><?php echo translate("tr_014478b5b412ab74b6a95f968d4e413d"); ?></button>
         <?php if($has_visible_contacts){ ?>
-        <button class="btn-custom button-color-scheme2 width100 actionAdSearchShowContacts" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_a3fe3a50afc89c343898bd962c49b514"); ?></button>
+        <button class="btn-custom mf-btn mf-btn-md mf-btn-secondary button-color-scheme2 width100 actionAdSearchShowContacts" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_a3fe3a50afc89c343898bd962c49b514"); ?></button>
         <?php }
     }elseif($data->status == 2){
         ?>
-        <button class="btn-custom button-color-scheme1 width100 actionOpenDialogueSendMessage" data-params="<?php echo $app->component->chat->buildParams(['whom_user_id'=>$data->user_id]); ?>" ><?php echo translate("tr_014478b5b412ab74b6a95f968d4e413d"); ?></button>
+        <button class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 width100 actionOpenDialogueSendMessage" data-params="<?php echo $app->component->chat->buildParams(['whom_user_id'=>$data->user_id]); ?>" ><?php echo translate("tr_014478b5b412ab74b6a95f968d4e413d"); ?></button>
         <?php
     }
 }
@@ -1815,45 +1815,45 @@ public function outActionButtonsInAdCard($data=[]){
 
         if($data->status == 0){
             ?>
-            <a class="btn-custom button-color-scheme1 width100" href="<?php echo outRoute("ad-edit", [$data->id]); ?>" ><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
-            <button class="btn-custom button-color-scheme6 width100 actionDeleteAdCard" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_ed2bbfbc53d83d3ad81f7fd6485ac6e8"); ?></button>
+            <a class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 width100" href="<?php echo outRoute("ad-edit", [$data->id]); ?>" ><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
+            <button class="btn-custom mf-btn mf-btn-md mf-btn-danger button-color-scheme6 width100 actionDeleteAdCard" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_ed2bbfbc53d83d3ad81f7fd6485ac6e8"); ?></button>
             <?php
         }elseif($data->status == 1){
             ?>
-            <a class="btn-custom button-color-scheme1 width100" href="<?php echo outRoute("ad-edit", [$data->id]); ?>" ><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
-            <button class="btn-custom button-color-scheme2 width100 actionOpenStaticModal" data-modal-target="adRemovePublication" data-modal-params="<?php echo buildAttributeParams(["id"=>$data->id]); ?>" ><?php echo translate("tr_af1939bb99d547ff54c8623ba556ab5a"); ?></button>
+            <a class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 width100" href="<?php echo outRoute("ad-edit", [$data->id]); ?>" ><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
+            <button class="btn-custom mf-btn mf-btn-md mf-btn-secondary button-color-scheme2 width100 actionOpenStaticModal" data-modal-target="adRemovePublication" data-modal-params="<?php echo buildAttributeParams(["id"=>$data->id]); ?>" ><?php echo translate("tr_af1939bb99d547ff54c8623ba556ab5a"); ?></button>
             <?php
         }elseif($data->status == 2){
             ?>
-            <a class="btn-custom button-color-scheme1 width100" href="<?php echo outRoute("ad-edit", [$data->id]); ?>" ><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
-            <button class="btn-custom button-color-scheme1 width100 actionExtendAdCard" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_18284259d971525f8d0bf9ae23871fcd"); ?></button>
-            <button class="btn-custom button-color-scheme6 width100 actionDeleteAdCard" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_ed2bbfbc53d83d3ad81f7fd6485ac6e8"); ?></button>
+            <a class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 width100" href="<?php echo outRoute("ad-edit", [$data->id]); ?>" ><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
+            <button class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 width100 actionExtendAdCard" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_18284259d971525f8d0bf9ae23871fcd"); ?></button>
+            <button class="btn-custom mf-btn mf-btn-md mf-btn-danger button-color-scheme6 width100 actionDeleteAdCard" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_ed2bbfbc53d83d3ad81f7fd6485ac6e8"); ?></button>
             <?php
         }elseif($data->status == 3){
             ?>
-            <a class="btn-custom button-color-scheme1 width100" href="<?php echo outRoute("ad-edit", [$data->id]); ?>" ><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
-            <button class="btn-custom button-color-scheme6 width100 actionDeleteAdCard" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_ed2bbfbc53d83d3ad81f7fd6485ac6e8"); ?></button>
+            <a class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 width100" href="<?php echo outRoute("ad-edit", [$data->id]); ?>" ><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
+            <button class="btn-custom mf-btn mf-btn-md mf-btn-danger button-color-scheme6 width100 actionDeleteAdCard" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_ed2bbfbc53d83d3ad81f7fd6485ac6e8"); ?></button>
             <?php
         }elseif($data->status == 4){
             if(!$data->block_forever_status){
             ?>
-            <a class="btn-custom button-color-scheme1 width100" href="<?php echo outRoute("ad-edit", [$data->id]); ?>" ><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
+            <a class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 width100" href="<?php echo outRoute("ad-edit", [$data->id]); ?>" ><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
             <?php } ?>
-            <button class="btn-custom button-color-scheme6 width100 actionDeleteAdCard" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_ed2bbfbc53d83d3ad81f7fd6485ac6e8"); ?></button>
+            <button class="btn-custom mf-btn mf-btn-md mf-btn-danger button-color-scheme6 width100 actionDeleteAdCard" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_ed2bbfbc53d83d3ad81f7fd6485ac6e8"); ?></button>
             <?php
         }elseif($data->status == 5){
             ?>
-            <a class="btn-custom button-color-scheme1 width100" href="<?php echo outRoute("ad-edit", [$data->id]); ?>" ><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
-            <button class="btn-custom button-color-scheme6 width100 actionDeleteAdCard" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_ed2bbfbc53d83d3ad81f7fd6485ac6e8"); ?></button>
+            <a class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 width100" href="<?php echo outRoute("ad-edit", [$data->id]); ?>" ><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
+            <button class="btn-custom mf-btn mf-btn-md mf-btn-danger button-color-scheme6 width100 actionDeleteAdCard" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_ed2bbfbc53d83d3ad81f7fd6485ac6e8"); ?></button>
             <?php
         }elseif($data->status == 7){
             ?>
-            <button class="btn-custom button-color-scheme6 width100 actionDeleteAdCard" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_ed2bbfbc53d83d3ad81f7fd6485ac6e8"); ?></button>
+            <button class="btn-custom mf-btn mf-btn-md mf-btn-danger button-color-scheme6 width100 actionDeleteAdCard" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_ed2bbfbc53d83d3ad81f7fd6485ac6e8"); ?></button>
             <?php
         }elseif($data->status == 8){
             ?>
-            <a class="btn-custom button-color-scheme1 width100" href="<?php echo outRoute("ad-edit", [$data->id]); ?>" ><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
-            <button class="btn-custom button-color-scheme6 width100 actionDeleteAdCard" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_ed2bbfbc53d83d3ad81f7fd6485ac6e8"); ?></button>
+            <a class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 width100" href="<?php echo outRoute("ad-edit", [$data->id]); ?>" ><?php echo translate("tr_1706282c5244c8e988f76c5eb939b754"); ?></a>
+            <button class="btn-custom mf-btn mf-btn-md mf-btn-danger button-color-scheme6 width100 actionDeleteAdCard" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_ed2bbfbc53d83d3ad81f7fd6485ac6e8"); ?></button>
             <?php
         }
 
@@ -1875,13 +1875,13 @@ public function outActionButtonsInAdCard($data=[]){
 
         if($data->status == 1){
             ?>
-            <button class="btn-custom button-color-scheme1 width100 actionOpenDialogueSendMessage" data-params="<?php echo $app->component->chat->buildParams(['ad_id'=>$data->id, 'whom_user_id'=>$data->user_id]); ?>" ><?php echo translate("tr_014478b5b412ab74b6a95f968d4e413d"); ?></button>
+            <button class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 width100 actionOpenDialogueSendMessage" data-params="<?php echo $app->component->chat->buildParams(['ad_id'=>$data->id, 'whom_user_id'=>$data->user_id]); ?>" ><?php echo translate("tr_014478b5b412ab74b6a95f968d4e413d"); ?></button>
             <?php if($has_visible_contacts){ ?>
-            <button class="btn-custom button-color-scheme2 width100 actionAdShowContacts" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_a3fe3a50afc89c343898bd962c49b514"); ?></button>
+            <button class="btn-custom mf-btn mf-btn-md mf-btn-secondary button-color-scheme2 width100 actionAdShowContacts" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_a3fe3a50afc89c343898bd962c49b514"); ?></button>
             <?php }
         }elseif($data->status == 2){
             ?>
-            <button class="btn-custom button-color-scheme1 width100 actionOpenDialogueSendMessage" data-params="<?php echo $app->component->chat->buildParams(['ad_id'=>$data->id, 'whom_user_id'=>$data->user_id]); ?>" ><?php echo translate("tr_014478b5b412ab74b6a95f968d4e413d"); ?></button>
+            <button class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 width100 actionOpenDialogueSendMessage" data-params="<?php echo $app->component->chat->buildParams(['ad_id'=>$data->id, 'whom_user_id'=>$data->user_id]); ?>" ><?php echo translate("tr_014478b5b412ab74b6a95f968d4e413d"); ?></button>
             <?php
         }
 
@@ -1912,7 +1912,7 @@ public function outActionButtonsOrderAdCard($data=[]){
             }
 
             ?>
-            <button class="btn-custom width100 mt30 actionGoToPartnerLink" <?php echo $button_color; ?> data-id="<?php echo $data->id; ?>" ><?php echo $button_title; ?></button>
+            <button class="btn-custom mf-btn mf-btn-md width100 mt30 actionGoToPartnerLink" <?php echo $button_color; ?> data-id="<?php echo $data->id; ?>" ><?php echo $button_title; ?></button>
             <?php
 
         }
@@ -1923,7 +1923,7 @@ public function outActionButtonsOrderAdCard($data=[]){
 
               <div class="ad-card-buy-now" >
                 <span><i class="ti ti-shield-lock"></i> <?php echo translate("tr_c21b2ddff1f121219f81a576c5f6a242"); ?></span>
-                <a class="btn-custom button-color-scheme5 width100" href="<?php echo outRoute('order-item-buy', [$data->id]); ?>" ><?php echo translate("tr_7718c3bbfa76ab13ca3af3016ab71c24"); ?></a>
+                <a class="btn-custom mf-btn mf-btn-md mf-btn-blue button-color-scheme5 width100" href="<?php echo outRoute('order-item-buy', [$data->id]); ?>" ><?php echo translate("tr_7718c3bbfa76ab13ca3af3016ab71c24"); ?></a>
               </div>
 
             <?php
@@ -1933,11 +1933,11 @@ public function outActionButtonsOrderAdCard($data=[]){
         if($this->hasAddToCart($data)){
             if(!$app->component->cart->checkInCart($data->id, $app->user->data->id)){
                 ?>
-                  <button class="btn-custom button-color-scheme3 width100 mt5 actionAddToCart" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_95e13e5129872446327b8c3a210ba2af"); ?></button>
+                  <button class="btn-custom mf-btn mf-btn-md mf-btn-dark button-color-scheme3 width100 mt5 actionAddToCart" data-id="<?php echo $data->id; ?>" ><?php echo translate("tr_95e13e5129872446327b8c3a210ba2af"); ?></button>
                 <?php
             }else{
                 ?>
-                  <button class="btn-custom button-color-scheme3 width100 mt5 actionAddToCart" data-route="<?php echo outRoute("cart"); ?>" ><?php echo translate("tr_5aa28eac85643cd8b1d7be4570391d11"); ?></button>
+                  <button class="btn-custom mf-btn mf-btn-md mf-btn-dark button-color-scheme3 width100 mt5 actionAddToCart" data-route="<?php echo outRoute("cart"); ?>" ><?php echo translate("tr_5aa28eac85643cd8b1d7be4570391d11"); ?></button>
                 <?php                    
             }
         }
@@ -1966,7 +1966,7 @@ public function outActiveServicesInCardAd($data){
                   <div>
                     <strong><?php echo translate("tr_876a40d4c0609bb10617c97694ab345f"); ?></strong>
                   </div>
-                  <a class="btn-custom button-color-scheme1 mt15" href="<?php echo outRoute('ad-services', [$data->id]); ?>" ><?php echo translate("tr_091a6185400057872fc532948628a66c"); ?></a>
+                  <a class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 mt15" href="<?php echo outRoute('ad-services', [$data->id]); ?>" ><?php echo translate("tr_091a6185400057872fc532948628a66c"); ?></a>
                 </div>
 
                 <?php
@@ -2002,7 +2002,7 @@ public function outActiveServicesInCardAd($data){
 
               <?php if($app->settings->paid_services_status){ ?>
 
-              <a class="btn-custom button-color-scheme1 mt15" href="<?php echo outRoute('ad-services', [$data->id]); ?>" ><?php echo translate("tr_091a6185400057872fc532948628a66c"); ?></a>
+              <a class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 mt15" href="<?php echo outRoute('ad-services', [$data->id]); ?>" ><?php echo translate("tr_091a6185400057872fc532948628a66c"); ?></a>
 
               <?php } ?>
 
@@ -2227,7 +2227,7 @@ public function outItemCardFavorite($data=[], $user_id=0){
     if($data->user_id != $user_id){
     ?>
 
-      <div class="container-item-favorite actionManageFavorite" data-id="<?php echo $data->id; ?>" >
+      <div class="container-item-favorite mf-card-product__actions actionManageFavorite" data-id="<?php echo $data->id; ?>" >
         <?php if($app->component->profile->inFavorite($data->id, $user_id)){ ?>
             <i class="ti ti-heart-filled"></i>
         <?php }else{ ?>
@@ -2246,7 +2246,7 @@ public function outLabelsInCatalog($data=[]){
     if($data->service_urgently_status || $data->condition_new_status || $data->booking_status || $data->delivery_status){
     ?>
 
-      <div class="container-item-labels" >
+      <div class="container-item-labels mf-card-product__badge" >
         
         <?php if($data->delivery_status == 1 && $data->user->delivery_status){ ?>
         <div class="container-item-labels-4" ><span><?php echo translate("tr_78b5fee18901ca2645ea512251b8375c"); ?></span></div>
@@ -2712,7 +2712,7 @@ public function outStatusInCardAd($data){
         <div class="card-status-info card-status-info-bg-success"  >
           <strong><?php echo translate("tr_f0c85f1f5bb88b14ca1c6974cc805977"); ?></strong>
           <p><?php echo translate("tr_dce9f41b065a92f2631bbbb180aa5eba"); ?></p>
-          <?php echo $app->component->transaction->buildPaymentButton(["target"=>"paid_category", "id"=>$data->id, "class"=>"btn-custom button-color-scheme1 mt15"]); ?>
+          <?php echo $app->component->transaction->buildPaymentButton(["target"=>"paid_category", "id"=>$data->id, "class"=>"btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 mt15"]); ?>
         </div>
 
         <?php
@@ -3074,7 +3074,10 @@ public function publicationByImport($params=[]){
 
 public function setStyleHeightItemImage(){
     global $app;
-    return 'style="height: '.$app->settings->board_catalog_height_item.'px"';
+    $h = (int) $app->settings->board_catalog_height_item;
+    if ($h < 120) $h = 225;
+    if ($h > 640) $h = 640;
+    return 'style="--ds-catalog-thumb-max:'.$h.'px"';
 }
 
 public function smartModeration($user_id=0){

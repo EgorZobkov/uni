@@ -12,7 +12,7 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
       <?php
       if(!$app->component->ads_categories->categories[$data->category_id]["filter_generation_title"]){
         ?>
-            <div class="ad-create-options-container-item" >
+            <div class="ad-create-options-container-item mf-form-section" >
                 
                 <h5 class="ad-create-options-container-item-title" > <strong><?php echo translate("tr_33ea34d8ad8f8fb23396552ee810fa9e"); ?></strong> </h5>
                 <input type="text" name="title" class="form-control" value="<?php echo $ad ? $ad->title : $data->title; ?>" >
@@ -24,7 +24,7 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
       }
       ?>
 
-      <div class="ad-create-options-container-item" >
+      <div class="ad-create-options-container-item mf-form-section" >
           
           <h5 class="ad-create-options-container-item-title" > <strong><?php echo translate("tr_38ca0af80cd7bd241500e81ba2e6efff"); ?></strong> </h5>
           <textarea name="text" class="form-control-textarea" ><?php echo $ad ? $ad->text : $data->text; ?></textarea>
@@ -32,13 +32,13 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
 
       </div>
 
-      <div class="ad-create-options-container-item" >
+      <div class="ad-create-options-container-item mf-form-section" >
           
           <h5 class="ad-create-options-container-item-title" > <strong><?php echo translate("tr_c24797c4abfb4ebe54dc45b9e411ac3a"); ?></strong> </h5>
 
           <p><?php echo translate("tr_25fb5a4c68afb45e682bcfa595f905c2"); ?></p>
 
-          <div class="init-unidropzone unidropzone mt10 sortable" >
+          <div class="init-unidropzone unidropzone sortable" >
 
             <?php if($app->settings->board_publication_add_video_status){ ?>
             <div class="unidropzone-change"  ><?php echo translate("tr_b760653ac17f261ac6679ad14f732a95"); ?></div>
@@ -60,12 +60,12 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
 
           <label class="form-label-error" data-name="media"></label>
 
-          <input type="text" name="link_video" class="form-control mt15" placeholder="<?php echo translate("tr_662d6fb048aed921e26d9d9de4c18124"); ?>" value="<?php echo $ad ? $ad->link_video : $data->link_video; ?>" >
+          <input type="text" name="link_video" class="form-control" placeholder="<?php echo translate("tr_662d6fb048aed921e26d9d9de4c18124"); ?>" value="<?php echo $ad ? $ad->link_video : $data->link_video; ?>" >
           
       </div>
 
       <?php if($app->component->ads_categories->categories[$data->category_id]["type_goods"] == "electronic_goods"){ ?>
-      <div class="ad-create-options-container-item" >
+      <div class="ad-create-options-container-item mf-form-section" >
           
           <h5 class="ad-create-options-container-item-title" > <strong><?php echo translate("tr_480107c7e081f07e1a616b3e98a1bc89"); ?></strong> </h5>
 
@@ -79,25 +79,25 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
       <?php } ?>
 
       <?php if($app->component->ads_categories->categories[$data->category_id]["type_goods"] == "partner_link"){ ?>
-      <div class="ad-create-options-container-item" >
+      <div class="ad-create-options-container-item mf-form-section" >
           
           <h5 class="ad-create-options-container-item-title" > <strong><?php echo translate("tr_6b5d775b64e9503706984360194843b8"); ?></strong> </h5>
 
           <p><?php echo translate("tr_31b12f2d096e4885e8c8d85f67a353f7"); ?></p>
 
-          <input type="text" name="partner_link" class="form-control mt15" value="<?php echo $ad ? $ad->partner_link : $data->partner_link; ?>" >
+          <input type="text" name="partner_link" class="form-control" value="<?php echo $ad ? $ad->partner_link : $data->partner_link; ?>" >
 
           <label class="form-label-error" data-name="partner_link"></label>
 
       </div>
 
-      <div class="ad-create-options-container-item" >
+      <div class="ad-create-options-container-item mf-form-section" >
           
           <h5 class="ad-create-options-container-item-title" > <strong><?php echo translate("tr_3e79a54f445eee43978fa5316625fb8f"); ?></strong> </h5>
 
           <p><?php echo translate("tr_98f8f954642b2c6fd855b2927ca6fc4e"); ?></p>
 
-          <div class="row mt15" >
+          <div class="row" >
              <div class="col-lg-8" >
                <input type="text" name="partner_button_name" class="form-control" placeholder="<?php echo translate("tr_24434ff9dfa6999ad580f9b5b2818d0d"); ?>" value="<?php echo $ad ? $ad->partner_button_name : $data->partner_button_name; ?>" >
              </div>
@@ -114,11 +114,11 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
       if($data->filters){
         ?>
 
-            <div class="ad-create-options-container-item" >
+            <div class="ad-create-options-container-item mf-form-section" >
                 
                 <h5 class="ad-create-options-container-item-title" > <strong><?php echo translate("tr_d6f9a39be4b8938d8499ac3b525abea7"); ?></strong> </h5>
 
-                <p class="mb25" ><?php echo translate("tr_40f621eeceedda3781fb5610a0aaec60"); ?></p>
+                <p><?php echo translate("tr_40f621eeceedda3781fb5610a0aaec60"); ?></p>
 
                 <?php echo $data->filters; ?>
 
@@ -130,7 +130,7 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
 
       <?php if($app->component->ads_categories->categories[$data->category_id]["price_status"]){ ?>
 
-      <div class="ad-create-options-container-item" >
+      <div class="ad-create-options-container-item mf-form-section" >
           
           <h5 class="ad-create-options-container-item-title" > <strong><?php echo $data->price_name; ?></strong> </h5>
 
@@ -153,7 +153,7 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
 
           <?php if($data->price_fixed_change_status){ ?>
             <div>
-              <label class="switch mt10">
+              <label class="switch">
                 <input type="checkbox" class="switch-input" name="price_fixed_status" value="1" <?php if($ad){ echo $ad->price_fixed_status ? 'checked=""' : ''; }else{ echo 'checked=""'; } ?> >
                 <span class="switch-toggle-slider">
                   <span class="switch-on"></span>
@@ -166,7 +166,7 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
 
           <?php if($data->price_gratis_status){ ?>
             <div>
-              <label class="switch mt10">
+              <label class="switch">
                 <input type="checkbox" class="switch-input" name="price_gratis_status" value="1" <?php if($ad){ echo $ad->price_gratis_status ? 'checked=""' : ''; } ?> >
                 <span class="switch-toggle-slider">
                   <span class="switch-on"></span>
@@ -182,7 +182,7 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
       <?php } ?>
 
       <?php if($data->price_currency_status){ ?>
-      <div class="ad-create-options-container-item" >
+      <div class="ad-create-options-container-item mf-form-section" >
           
           <h5 class="ad-create-options-container-item-title" > <strong><?php echo translate("tr_cf55d9a902b71b917a6f0f8aedd4ed11"); ?></strong> </h5>
 
@@ -198,7 +198,7 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
 
       <?php if($app->component->ads_categories->categories[$data->category_id]["marketplace_status"]){ ?>
 
-      <div class="ad-create-options-container-item" >
+      <div class="ad-create-options-container-item mf-form-section" >
           
           <h5 class="ad-create-options-container-item-title" > <strong><?php echo translate("tr_35044955818867ca2693fd49107c721c"); ?></strong> </h5>
 
@@ -213,7 +213,7 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
 
           <div class="ad-create-options-container-item-box-available-settings" <?php if($ad){ echo $ad->not_limited ? 'style="display: none;"' : 'style="display: block;"'; }else{ echo $data->not_limited ? 'style="display: none;"' : 'style="display: block;"'; } ?> >
             
-            <div class="row mt10" >
+            <div class="row" >
               <div class="col-md-6" >
                 <input type="number" name="in_stock" class="form-control" placeholder="<?php echo translate("tr_ff63789b30d2ceb649261319e671f4ef"); ?>" value="<?php echo $ad ? $ad->in_stock : $data->in_stock; ?>" >
               </div>
@@ -227,7 +227,7 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
 
       <?php if($data->term_date_status){ ?>
 
-      <div class="ad-create-options-container-item" >
+      <div class="ad-create-options-container-item mf-form-section" >
           
           <h5 class="ad-create-options-container-item-title" > <strong><?php echo translate("tr_23fd6a45118da7115a40e7fdda97edfa"); ?></strong> </h5>
 
@@ -243,7 +243,7 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
       <?php } ?>
 
       <?php if($app->component->ads_categories->categories[$data->category_id]["online_view_status"] || $app->component->ads_categories->categories[$data->category_id]["condition_new_status"] || $app->component->ads_categories->categories[$data->category_id]["condition_brand_status"] || $app->user->data->service_tariff->items->autorenewal){ ?>
-      <div class="ad-create-options-container-item-extra-settings" >
+      <div class="ad-create-options-container-item-extra-settings mf-form-section" >
           
           <h5 class="ad-create-options-container-item-title" > <strong><?php echo translate("tr_e0009397faa01627a668afee5b5f4f48"); ?></strong> </h5>
 
@@ -343,7 +343,7 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
 
       <?php if($app->component->ads_categories->categories[$data->category_id]["delivery_status"] && $app->settings->integration_delivery_services_active){ ?>
 
-      <div class="ad-create-options-container-item" >
+      <div class="ad-create-options-container-item mf-form-section" >
           
           <h5 class="ad-create-options-container-item-title" > <strong><?php echo translate("tr_b973ee86903271172c9b4f5529bc19bb"); ?></strong> </h5>
 
@@ -358,7 +358,7 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
               </label>
           </div> 
 
-          <p class="mb25" ><?php echo translate("tr_2097272ec4cb451ff2b84bc7a99184f8"); ?></p>         
+          <p><?php echo translate("tr_2097272ec4cb451ff2b84bc7a99184f8"); ?></p>
 
       </div>
 
@@ -366,7 +366,7 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
 
       <?php if($app->settings->active_countries){ ?>
 
-      <div class="ad-create-options-container-item" >
+      <div class="ad-create-options-container-item mf-form-section" >
           
           <h5 class="ad-create-options-container-item-title" > <strong><?php echo translate("tr_06d897a2b68c63493b65390fe35e7a2a"); ?></strong> </h5>
 
@@ -388,7 +388,7 @@ $chain = $app->component->ads_categories->chainCategory($data->category_id);
             </div>
           </div>
 
-        <div class="ad-create-options-container-item-extra mt10" >
+        <div class="ad-create-options-container-item-extra" >
           <label class="switch">
             <input type="checkbox" class="switch-input" name="delivery_shipping_status" value="1" <?php if($ad){ echo $ad->delivery_shipping_status ? 'checked=""' : ''; }else{ echo $data->delivery_shipping_status ? 'checked=""' : ''; } ?> >
             <span class="switch-toggle-slider">

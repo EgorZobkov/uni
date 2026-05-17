@@ -14,8 +14,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Оставлены 2 шрифта для ускорения загрузки; display=swap избегает блокировки рендера -->
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <!-- Manrope: только веса из десктопной типографики (400 / 600 / 700); display=swap не блокирует рендер -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
 
     <meta property="og:site_name" content="{{ $template->settings->project_name }}">
     <meta property="og:type" content="website">

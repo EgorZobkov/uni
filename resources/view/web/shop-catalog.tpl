@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="container mt20 mb100" >
+<div class="container ds-flow-page-start shop-catalog-page-bottom-spacer" >
 
 <div class="row" >
   
@@ -47,16 +47,16 @@
 
 </div>
 
-<div class="row" >
+<div class="row mf-catalog-layout" >
 
   {% if($data->shop->status == "published"): %}
 
-  <div class="col-md-3 mb10" >
+  <div class="mf-catalog-layout__sidebar col-12 mb10" >
 
       {% component shop-sidebar.tpl %}
 
-      <div class="mt20 d-none d-lg-block" >
-        <form class="params-form live-filters params-form-sticky" >
+      <div class="ds-flow-section mt20 d-none d-lg-block" >
+        <form class="params-form live-filters params-form-sticky mf-form ds-stack-16" >
 
           {{ $template->component->catalog->buildParamsForm($_GET, $data->category->id) }}
 
@@ -64,10 +64,10 @@
 
             {{ $template->component->ads_filters->outButtonExtraFilters($data->category->id) }}
 
-            <button class="btn-custom button-color-scheme1 width100 actionApplyLiveFilters" >{{ translate("tr_130bbbc068f7a58df5d47f6587ff4b43") }}</button>
+            <button class="btn-custom mf-btn mf-btn-md mf-btn-primary width100 actionApplyLiveFilters" >{{ translate("tr_130bbbc068f7a58df5d47f6587ff4b43") }}</button>
 
             {% if($_GET["filter"]): %}
-            <button class="btn-custom button-color-scheme3 width100 mt5 actionClearLiveFilters">{{ translate("tr_02d901c131a1b8c2d1dd669e1f6c88a5") }}</button>
+            <button class="btn-custom mf-btn mf-btn-md mf-btn-dark width100 actionClearLiveFilters">{{ translate("tr_02d901c131a1b8c2d1dd669e1f6c88a5") }}</button>
             {% endif %}
 
           </div>
@@ -77,13 +77,13 @@
 
   </div>
 
-  <div class="col-md-9 col-12" >
+  <div class="mf-catalog-layout__main col-12" >
 
       <div>
         <div class="row" >
             <div class="col-lg-9 col-12 col-md-9 d-none d-lg-block" >
               
-                <div class="shop-catalog-search-container" >
+                <div class="shop-catalog-search-container mf-shop-search-bar" >
                   <form class="live-shop-search-form" method="get" action="{{ $template->component->shop->linkToCatalog($data->shop->alias) }}">
                       <button class="live-search-form-icon"><i class="ti ti-search"></i></button>
                       <input type="text" name="search" class="live-search-form-input" autocomplete="off" placeholder="{{ translate("tr_5466fabe16a5487db24c8e71e50cf160") }}" value="{{ $_GET['search'] }}"> 
@@ -108,9 +108,9 @@
         </div> 
       </div>    
 
-      <div class="catalog-container-options mt20" >
+      <div class="catalog-container-options mf-toolbar ds-flow-section" >
         
-        <div class="row" >
+        <div class="row align-items-center gy-3" >
           <div class="col-md-12 col-12 text-end" >
 
             <div class="catalog-container-options-links-inline" >
@@ -129,14 +129,14 @@
         </div>
 
         {% if($seo->h1): %}
-        <h1 class="font-bold mt20">{{ $seo->h1 }}</h1>
+        <h1 class="mf-page-header__title font-bold">{{ $seo->h1 }}</h1>
         {% endif %}
 
       </div>
 
       <div class="shop-catalog-container mt30" >
 
-        <div class="row row-cols-2 g-2 g-lg-3" >
+        <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3" >
           {% component items/skeleton.tpl %}
         </div>
 

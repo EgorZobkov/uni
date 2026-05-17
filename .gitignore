@@ -1,3 +1,16 @@
 
 .env
 .cursor/
+.patch_check/
+.patch_stage_*/
+_patch_desc.txt
+_patch_*.txt
+patch-latest-*.zip
+patch-admin-update-*.zip
+
+# Случайные копии из resources/ и app/ в корне
+/*.tpl
+/*.php
+/*.js
+/*.css
+!index.php

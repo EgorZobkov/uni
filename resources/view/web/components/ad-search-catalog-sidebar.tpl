@@ -10,7 +10,7 @@ $sort_val = isset($params['sort']) && $params['sort'] !== '' ? $params['sort'] :
 $geoObj = null;
 ?>
 <input type="hidden" name="sort" value="<?php echo htmlspecialchars((string)$sort_val, ENT_QUOTES, 'UTF-8'); ?>">
-<div class="params-form-filters-container">
+<div class="params-form-filters-container ds-stack-16">
 <?php if (!empty($app->settings->active_countries)) { ?>
     <?php
     $geo = $app->component->geo->getChange();

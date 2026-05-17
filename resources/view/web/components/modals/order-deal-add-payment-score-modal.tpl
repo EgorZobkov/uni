@@ -1,4 +1,4 @@
-<h3 class="modal-title mb-3" > <strong><?php echo translate("tr_dcaa92e2ddc6a6305e3592910fee8df6"); ?></strong> </h3>
+<h3 class="modal-title mf-modal__title" > <strong><?php echo translate("tr_dcaa92e2ddc6a6305e3592910fee8df6"); ?></strong> </h3>
 
 <?php echo $app->ui->outInputPaymentScore($data->payment_service); ?>
 

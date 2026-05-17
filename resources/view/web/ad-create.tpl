@@ -2,9 +2,10 @@
 
 {% block content %}
 
-<div class="container mt40" >
+<div class="container ds-flow-page-start-xl">
 
-<h3 class="font-bold mb20" >{{ $seo->h1; }}</h3>
+<div class="ds-stack-24">
+<h3 class="font-bold" >{{ $seo->h1; }}</h3>
 
 <div class="ad-create-categories-container" >
   
@@ -18,9 +19,11 @@
 
 </div>
 
+</div>
+
 <div class="ad-create-options-container" >
 
-  <form class="form-ad-create" >
+  <form class="form-ad-create mf-form ds-stack-32" >
 
   <div class="ad-create-content-container" >
   </div>
@@ -32,7 +35,9 @@
   <input type="hidden" name="geo_latitude" value="" >
   <input type="hidden" name="geo_longitude" value="" >
 
-  <button class="btn-custom-big button-color-scheme3 adActionPublication mt30 mb30" >{{ translate("tr_e9c3a648ce9e5dcf3c96940e682a72a2") }}</button>
+  <div class="mf-form-actions" >
+  <button class="btn-custom-big mf-btn mf-btn-lg mf-btn-dark adActionPublication" >{{ translate("tr_e9c3a648ce9e5dcf3c96940e682a72a2") }}</button>
+  </div>
 
   </form>
 

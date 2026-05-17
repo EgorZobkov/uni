@@ -1,4 +1,4 @@
-<h3 class="modal-title mb-3" > <strong><?php echo translate("tr_294f68362eb5d1b8990dc940145801f7"); ?></strong> </h3>
+<h3 class="modal-title mf-modal__title" > <strong><?php echo translate("tr_294f68362eb5d1b8990dc940145801f7"); ?></strong> </h3>
 
 <form class="order-deal-dispute-form" >
 

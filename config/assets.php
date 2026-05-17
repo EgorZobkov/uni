@@ -1,14 +1,29 @@
 <?php
 
+/**
+ * Версии статики ветки (query ?v=) — сброс кэша у пользователей после деплоя.
+ * При изменении файла увеличьте соответствующее число.
+ */
+$assetVer = [
+    'main_css' => 11,
+    'design_system_css' => 46,
+    'main_js' => 7,
+    'home_js' => 5,
+    'catalog_js' => 4,
+    'ad_search_catalog_js' => 2,
+];
+
 return [
+    'versions' => $assetVer,
     'web' => [
         'css' => [
             '<link rel="stylesheet" href="{assets_path}/fonts/fontawesome.css" />',
             '<link rel="stylesheet" href="{assets_path}/fonts/tabler-icons.css" />',
-            '<link rel="stylesheet" href="{assets_path}/fonts/flag-icons.css" />',            
+            '<link rel="stylesheet" href="{assets_path}/fonts/flag-icons.css" />',
             '<link rel="stylesheet" href="{assets_path}/vendors/bootstrap/css/bootstrap.min.css?100" />',
             '<link rel="stylesheet" href="{assets_path}/css/animate.css" />',
-            '<link rel="stylesheet" href="{assets_path}/css/main.css?v=3" />',
+            '<link rel="stylesheet" href="{assets_path}/css/main.css?v=' . $assetVer['main_css'] . '" />',
+            '<link rel="stylesheet" href="{assets_path}/css/design-system.css?v=' . $assetVer['design_system_css'] . '" />',
             '<link rel="stylesheet" href="{assets_path}/vendors/swiper/swiper-bundle.min.css" />',
             '<link rel="stylesheet" href="{assets_path}/vendors/intl-tel-input/intlTelInput.css" />',
             '<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />',
@@ -21,7 +36,7 @@ return [
             '<script src="{assets_path}/vendors/maskedinput/maskedinput.min.js" defer></script>',
             '<script src="{assets_path}/vendors/uniselect/uniselect.js" defer></script>',
             // CKEditor подключается только на странице магазина (ShopController::page)
-            '<script src="{assets_path}/js/main.js?v=2" type="module" ></script>',
+            '<script src="{assets_path}/js/main.js?v=' . $assetVer['main_js'] . '" type="module" ></script>',
             '<script src="{assets_path}/js/chat.js" type="module" data-home-lazy="1"></script>',
             '<script src="{assets_path}/js/cart.js" type="module" data-home-lazy="1"></script>',
             '<script src="{assets_path}/js/geo.js" type="module" data-home-lazy="1"></script>',
@@ -51,7 +66,7 @@ return [
             '<link rel="stylesheet" href="{assets_path}/vendors/toastr/toastr.css" />',
             '<link rel="stylesheet" href="{assets_path}/vendors/intl-tel-input/intlTelInput.css" />',
             '<link rel="stylesheet" href="{assets_path}/css/animate.css" />',
-            '<link rel="stylesheet" href="{assets_path}/css/main.css?v=3" />',
+            '<link rel="stylesheet" href="{assets_path}/css/main.css?v=5" />',
             '<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />',
         ],
         'js' => [

@@ -1,4 +1,4 @@
-<h3 class="modal-title mb-3" > <strong><?php echo translate("tr_01a4d5c77086ce7c8b950ca237510b93"); ?></strong> </h3>
+<h3 class="modal-title mf-modal__title" > <strong><?php echo translate("tr_01a4d5c77086ce7c8b950ca237510b93"); ?></strong> </h3>
 
 <div class="order-buy-card-delivery" >
 

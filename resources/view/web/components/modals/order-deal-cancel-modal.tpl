@@ -1,4 +1,4 @@
-<h3 class="modal-title mb-3" > <strong><?php echo translate("tr_6b01c9b529377dee61cf73e0dc9d870d"); ?></strong> </h3>
+<h3 class="modal-title mf-modal__title" > <strong><?php echo translate("tr_6b01c9b529377dee61cf73e0dc9d870d"); ?></strong> </h3>
 
 <textarea class="form-control-textarea" rows="4" placeholder="<?php echo translate("tr_a14c4086375b67cd9c064d9d06c6ff8d"); ?>" name="deal_reason_cancel" ></textarea>
 

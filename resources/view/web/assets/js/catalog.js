@@ -1,4 +1,5 @@
 import Helpers from './helpers.class.js';
+import { initAllCategoriesStrips, scheduleCategoriesStripLayout } from './categories-strip-layout.js';
 
 $(document).ready(function () {
 
@@ -9,6 +10,14 @@ $(document).ready(function () {
 
    loadItems();
    loadCalendar();
+
+   if ($('.mf-catalog-categories-track').length) {
+      initAllCategoriesStrips();
+      $(window).on('resize orientationchange', () => scheduleCategoriesStripLayout('.mf-categories-strip'));
+      document.querySelectorAll('.mf-catalog-categories-track .mf-home-hero__category-item img').forEach((img) => {
+         if (!img.complete) img.addEventListener('load', () => scheduleCategoriesStripLayout('.mf-categories-strip'), { once: true });
+      });
+   }
 
    function loadCalendar(){
 
@@ -62,7 +71,7 @@ $(document).ready(function () {
       var showLoadError = function(){
          var errorHtml = '<div class="catalog-load-error text-center py-5">' +
             '<p class="text-muted mb-3">' + (helpers.translate && helpers.translate.content ? helpers.translate.content("tr_catalog_load_error") : "Не удалось загрузить объявления") + '</p>' +
-            '<button type="button" class="btn-custom button-color-scheme1 actionRetryLoadItems">' + (helpers.translate && helpers.translate.content ? helpers.translate.content("tr_catalog_load_retry") : "Попробовать снова") + '</button>' +
+            '<button type="button" class="btn-custom mf-btn mf-btn-md mf-btn-primary button-color-scheme1 actionRetryLoadItems">' + (helpers.translate && helpers.translate.content ? helpers.translate.content("tr_catalog_load_retry") : "Попробовать снова") + '</button>' +
             '</div>';
          $(".container-load-items").html(errorHtml);
       };
@@ -77,6 +86,8 @@ $(document).ready(function () {
             if(page == 1){ showLoadError(); } else { helpers.showNotice && helpers.showNotice("warning", (helpers.translate && helpers.translate.content ? helpers.translate.content("tr_catalog_load_error") : "Не удалось загрузить объявления")); }
          }
       }, function(data) {
+
+         if(button){ helpers.endProcessLoadButton($(button)); }
 
          if(!data || data["content"] === undefined){
             if(page == 1){ showLoadError(); }
@@ -117,8 +128,8 @@ $(document).ready(function () {
 
    $(document).on('click','.actionRetryLoadItems', function () {
        currentPageLoadItems = 1;
-       $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm me-1" role="status"></span>' + ($(this).text() || "Загрузка..."));
-       loadItems(1);
+       helpers.startProcessLoadButton($(this));
+       loadItems(1, this);
    });
 
    $(document).on('click','.catalog-action-change-view-item > span', function (e) { 

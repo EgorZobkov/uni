@@ -17,7 +17,7 @@
              </div>
           </div>
 
-          <div class="mt20" style="position: relative; z-index: 2;">
+          <div class="ds-relative-z-stacked ds-flow-section">
              
              {% if($template->settings->api_app_download_only_apk): %}
              <a href="{{ $template->settings->api_app_download_link_apk }}" class="btn-custom button-color-scheme2">{{ translate("tr_2b217944b57b8ace46974d4fea5c1f98") }}</a>
@@ -57,7 +57,7 @@
 
         </div>  
 
-        <div class="row mt30" >
+        <div class="row ds-flow-section-lg" >
 
              <div class="col-md-8" >
 

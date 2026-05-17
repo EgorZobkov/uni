@@ -69,6 +69,9 @@ public function managerModal($modal_id=null, $data=[]){
     }elseif($modal_id == "shopCategories"){
         $this->tpl('modals/shop-categories-modal.tpl');
         $content = $this->modal($modal_id, "medium", $data);
+    }elseif($modal_id == "homeCategories"){
+        $this->tpl('modals/home-categories-modal.tpl');
+        $content = $this->modal($modal_id, "medium", $data);
     }elseif($modal_id == "bookingOrder"){
         $this->tpl('modals/booking-order-modal.tpl');
         $content = $this->modal($modal_id, "big", $data);

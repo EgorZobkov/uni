@@ -1,5 +1,5 @@
 
-<h4 class="modal-title mb-3 mt0" > <strong><?php echo translate("tr_af1289744a307b5a16d3efbb02d9549a"); ?></strong> </h4>
+<h4 class="modal-title mf-modal__title mt0" > <strong><?php echo translate("tr_af1289744a307b5a16d3efbb02d9549a"); ?></strong> </h4>
 
 <div class="row">
 <div class="col">
@@ -16,7 +16,7 @@
 </div>
 </div>
 
-<div class="text-end mt-4" >
+<div class="mf-modal__actions mf-modal__actions--end" >
 	<button  class="btn-custom button-color-scheme1 captchaModalVerifyCode" ><?php echo translate("tr_e2603bcce79e0b861ac1f1bd464de2b6"); ?></button>
 </div>
 

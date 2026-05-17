@@ -82,7 +82,7 @@ public function outAdsSearch($searchQuery = '', $title = null, $showLink = true)
     <div class="bold-title-and-link">
         <span><?php echo $title !== null ? $title : translate("tr_home_people_search"); ?></span>
         <?php if($showLink){ ?>
-        <a class="btn-custom-mini button-color-scheme1" href="<?php echo $app->component->ads->outHrefAdsSearchCatalog(); ?>"><?php echo translate("tr_1cc7e7972b8c9daa5e9c8e94483acc7d"); ?></a>
+        <a class="bold-title-and-link__all" href="<?php echo $app->component->ads->outHrefAdsSearchCatalog(); ?>"><?php echo translate("tr_1cc7e7972b8c9daa5e9c8e94483acc7d"); ?></a>
         <?php } ?>
     </div>
 
@@ -172,6 +172,15 @@ public function outArticlesBlog(){
 
 }
 
+/**
+ * Корень каталога продажи (гео или все регионы) — ссылка «Все объявления» с главной.
+ */
+public function hrefSalesCatalogRoot(){
+    global $app;
+    $geo = $app->component->geo->getChange();
+    return $geo ? outLink('i/' . $geo->alias) : outLink('i/all');
+}
+
 public function outCategories(){
     global $app;
 
@@ -180,7 +189,7 @@ public function outCategories(){
           foreach ($app->component->ads_categories->getMainCategories() as $key => $value) {
 
             ?>
-            <a data-id="<?php echo $value["id"]; ?>" href="<?php echo $app->component->ads_categories->buildAliases($value); ?>" class="home-widget-categories-item"  >
+            <a data-id="<?php echo $value["id"]; ?>" href="<?php echo $app->component->ads_categories->buildAliases($value); ?>" class="home-widget-categories-item mf-home-hero__category-item"  >
                 <?php if($app->storage->name($value["image"])->exist()){ ?>
                 <img src="<?php echo $app->storage->name($value["image"])->host(true)->get(); ?>">
                 <?php } ?>

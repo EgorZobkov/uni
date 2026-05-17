@@ -1,15 +1,15 @@
 public function modalSize($id=null){
     if($id == "nano"){
-        return "max-width: 450px!important;";
+        return "--mf-modal-max-width: 450px;";
     }elseif($id == "small"){
-        return "max-width: 550px!important;";
+        return "--mf-modal-max-width: 550px;";
     }elseif($id == "medium"){
-        return "max-width: 650px!important;";
+        return "--mf-modal-max-width: 650px;";
     }elseif($id == "big"){
-        return "max-width: 750px!important;";
+        return "--mf-modal-max-width: 750px;";
     }elseif($id == "mega"){
-        return "max-width: 950px!important;";
+        return "--mf-modal-max-width: 950px;";
     }else{
-        return "max-width: ".$id."!important;";
+        return "--mf-modal-max-width: ".$id.";";
     }
 }
